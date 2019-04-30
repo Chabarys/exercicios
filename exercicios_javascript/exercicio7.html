@@ -1,0 +1,40 @@
+<!--
+Exercício 7
+ Crie uma caixa de texto em html
+ Crie um botão em html que chama código em Javascript que
+dependendo do valor introduzido mostra uma mensagem
+diferente
+ Entre 0 e 10, 10 excluído, mostra “Insuficiente”
+ Entre 10 e 14, 14 excluído, mostra “Bom”
+ Maior que 14, mostra “Muito Bom”
+-->
+
+<!DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Exercício</title>
+    </head>
+
+    <body>
+        <form>
+            <input type="text" id="num">
+            <button onclick="verificar()">Verificar</button>
+        </form>
+        <script>
+            function verificar() {
+                var num = document.getElementById("num").value;
+                if (num < 10) {
+                    alert("Insuficiente");
+                }
+                else if (num < 14) {
+                    alert("Bom");
+                }
+                else {
+                    alert("Muito Bom");
+                }
+            }
+        </script>
+    </body>
+
+    </html>

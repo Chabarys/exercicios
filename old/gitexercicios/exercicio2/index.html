@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--cabeçalho com a importação o jquery e as funções do ajax-->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+        <meta charset="UTF-8">
+        <title>Exercício 3</title>
+        <link rel="stylesheet" href="css.css">
+        <script>
+            function enviar(){
+                $.ajax({
+                    url: "recebimento.php",
+                    data: {
+                        valor1 : $("#valor1").val(),
+                        valor2 : $("#valor2").val(),
+                        valor3 : $("#valor3").val()              
+                    },
+                    success: function(result){
+                        $("#resultado").html(result);
+                    },
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <section class="primeira">  
+            <header><p id="titulo">Teste lógico de <b>PHP</b> e <b>JavaScript</b></p></header>
+            <div class="kkkk">
+            <p class="paragrafo">Informe os 3 números abaixo:</p>
+            <form action="#"> 
+                <!--formulário que contém 3 campos de texto e um de enviar resultado-->
+                <input id="valor1" class="campo-unico" type="text" name="box1">
+                <input id="valor2" class="campo-pequeno" type="text" name="box2">
+                <input id="valor3" class="campo-pequeno" type="text" name="box3"> 
+                <input id="campo-enviar" type="submit" onclick="enviar()" value="Enviar">
+                
+                <div class="div2">
+                    <!--campo que contém os botões de mostrar os maiores e menores resultados-->
+                    <p class="texto-exibir">Exibir os <b>maiores</b> valores.</p>
+                    <input id="radio-maior" class="exibir" type="radio" name="maiormenor" value="maior">
+                    <p class="texto-exibir">Exibir os <b>menores</b> valores.</p>
+                    <input id="radio-menor" class="exibir" type="radio" name="maiormenor" value="menor">
+                </div>
+                </div>
+                <div class="div2">
+                    <label  class="paragrafo">Resultado:</label>
+                    <textarea id="resultado" class="resultado" cols="70"></textarea></br>
+                </div>  </br></br></br> 
+                <input id="reiniciar" class="novo" type="button" value="Iniciar Novo">
+            </form>
+            <div id="resultado">
+            </div>
+        </section>
+        <!--importação do javascript para fazer interação com a página-->
+        <script src="exercicio2.js"></script>
+    </body>
+</html>

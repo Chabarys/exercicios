@@ -1,0 +1,172 @@
+* {
+    box-sizing: border-box;
+}
+
+/* ESTILIZAÇÃO DAS TAGS */
+
+body {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+    background-color: #FFF;
+}
+
+select {
+    background: rgb(197, 211, 197);
+    height: 30px;
+}
+
+footer {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-top: 250px;
+}
+
+/* ESTILIZAÇÃO DAS CLASSES */
+
+.form-control {
+    padding: 5px;
+    display: inline-block;
+}
+
+.form-control label {
+    display: block;
+}
+
+.form-control input,
+.form-control select {
+    width: 100%;
+}
+
+.tabela {
+    width: 100%;
+}
+
+.size-1 {
+    width: calc(100% * (1 / 12) - 2px);
+}
+
+.size-2 {
+    width: calc(100% * (2 / 12) - 2px);
+}
+
+.size-3 {
+    width: calc(100% * (3 / 12) - 2px);
+}
+
+.size-4 {
+    width: calc(100% * (4 / 12) - 2px);
+}
+
+.size-5 {
+    width: calc(100% * (5 / 12) - 2px);
+}
+
+.size-6 {
+    width: calc(100% * (6 / 12) - 2px);
+}
+
+.size-7 {
+    width: calc(100% * (7 / 12) - 2px);
+}
+
+.size-8 {
+    width: calc(100% * (8 / 12) - 2px);
+}
+
+.size-12 {
+    width: calc(100% * (12 / 12) - 2px);
+}
+
+.botao {
+    color: #000;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 20px;
+    margin-top: 50px;
+    margin-left: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    text-transform: uppercase;
+    background-color: #f00;
+    animation: myfirst 500ms linear 2s infinite alternate;
+}
+
+.botao:disabled {
+    background-color: #ccc;
+    color: #888;
+    cursor: default;
+}
+
+.campos {
+    height: 30px;
+    background: rgb(197, 211, 197);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ESTILIZAÇÃO DOS ID */
+
+#painel-formulario,
+#painel-grade {
+    flex: 1 0 33%;
+    font-family: Arial, Helvetica, sans-serif;
+} 
+
+#painel-formulario {
+    background-color: #FFF;
+    background-image: linear-gradient(to top, #ffffff 0%, #c5cac5 100%);
+    padding: 10px;
+}
+
+#painel-grade {
+    background-color: #FFF;
+    background-image: linear-gradient(to top, #c5cac5 0%, #ffffff 100%);
+}
+
+#preco {
+    margin-left: 180px;
+    height: 30px;
+    background-color: rgb(197, 211, 197);
+}
+
+#campo-data {
+    margin-left: 40%;
+}
+
+#campo-id {
+    margin-left: 10px;
+}
+
+#campo-nome {
+    margin-left: 10px;
+    margin-top: 30px;
+}
+
+#campo-biblioteca {
+    margin-left: 10px;
+    margin-top: 30px;
+    margin-right: 30px;
+}
+
+#idLivro {
+    height: 30px;
+    background: rgb(197, 211, 197);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#nome {
+    height: 30px;
+    background: rgb(197, 211, 197);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#criadoem {
+    height: 30px;
+    background: rgb(197, 211, 197);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#caixa-preco {
+    margin-left: 180px;
+}
