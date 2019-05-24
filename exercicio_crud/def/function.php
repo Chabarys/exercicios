@@ -5,7 +5,7 @@ function connection(){ // Função que faz conectar com o banco de dados
 }
 
 function json_error($message = ""){ // Função que faz o erro de código aparecer em forma de Alert
-    $json = ["status" => 2, "message" => $message]; // jason = variavel
+    $json = ["status" => 2, "message" => $message]; // json = variavel
     die(json_encode($json)); // 'Die' faz a função parar 'morrer' 
 }
 

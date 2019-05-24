@@ -2,9 +2,12 @@
 
 require("../../def/function.php"); // Mesma coisa que 'include'
 
-$nome = $_GET["nome"];
+$nome = filter_input(INPUT_GET, "nome", FILTER_SANITIZE_STRING);
 $idbiblioteca = $_GET["idbiblioteca"];
 $preco = $_GET["preco"];
+
+session_start();
+$_SESSION["oi"] = "bom dia";
 
 $preco = value_number($preco); // Função para transformar numero do formato brasileiro para formato de sistema
 
