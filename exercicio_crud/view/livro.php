@@ -68,7 +68,7 @@ $connection = connection();
     </div>
 
     <div id='painel-grade'>
-        <table id="grade" class="tabela" border="2">
+        <table id="grade" class="tabela" border="1">
             <thead>
                 <tr>
                     <th>ID</th>
