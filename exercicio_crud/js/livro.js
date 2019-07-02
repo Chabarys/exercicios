@@ -14,7 +14,7 @@ $(document).ready(function() { // Função que faz a tecla 'ENTER' servir como c
 $.ajaxSetup({ // '$.ajaxSetup' define valores padrão para serem válidos para todos os pedidos ajax.
 	dataType: 'json',
 	error: function(){ // Função que vai ser executada caso aconteça erro na execução
-		alert("Houve uma falha de conexão.\nVerifique sua internet.");
+		alert("Houve uma falha de conexão.\n	Verifique sua internet.");
 	}
 });
 
