@@ -12,7 +12,9 @@ foreach($subdirs as $subdir){
             $input = "scss/{$subdir}/{$file}";
             $output = str_replace("scss", "css", $input);
             echo "{$input} > {$output}<br>";
-            exec("sass {$input} {$output}\n");
+			exec("sass {$input} {$output}\n");
+			flush();
+			ob_flush();
         }
     }
 }

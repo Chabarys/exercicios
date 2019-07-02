@@ -5,7 +5,7 @@
 	<?php require("../def/head.php"); ?>
 	<title>Cadastro de Livros</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-
+	<script type="text/javascript" src="js/livro.js"></script>
 </head>
 
 <body class="bg-light">
@@ -123,20 +123,12 @@
 							<td>R$ 10,00</td>
 							<td>28/06/2019</td>
 						</tr>
-						<tr>
-							<th scope="row">1</th>
-							<td>Livro 1</td>
-							<td>Biblioteca 1</td>
-							<td>R$ 10,00</td>
-							<td>28/06/2019</td>
-						</tr>
-
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-	<div class="card-footer text-muted bg-dark">
+	<div class="card-footer text-muted bg-dark py-0">
 		<div class="offset-md-5">
 			<span class="ml-md-0 text-white">Alisson Chabaribery - 2019</span><br>
 			<span class="ml-md-4 text-white">Cadastro de Livros</span><br>
