@@ -1,0 +1,10 @@
+.fade {
+  color: #000;
+  font-weight: bold;
+}
+
+.fade:hover {
+  color: #f00;
+}
+
+/*# sourceMappingURL=table.css.map */

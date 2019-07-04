@@ -1,7 +1,13 @@
 $(document).ready(function() { 
-    _status = 0;
-    $("#idLivro").focus(); 
+    //_status(0);
+	$("#idLivro").focus();
 });
+
+function teste(){
+	$("#nomeLivro").html("oi");
+}
+
+/*
 if (status === undefined) {
 	 _status;
 }else {
@@ -39,3 +45,4 @@ if (status === undefined) {
 			$("#precoLivro").attr("disabled", false);
 	}
 }
+*/

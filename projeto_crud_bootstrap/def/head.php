@@ -6,3 +6,4 @@
 <link href="style/css/com/button.css" rel="stylesheet" type="text/css">
 <link href="style/css/com/body.css" rel="stylesheet" type="text/css">
 <link href="style/css/com/card-footer.css" rel="stylesheet" type="text/css">
+<link href="style/css/com/table.css" rel="stylesheet" type="text/css">
