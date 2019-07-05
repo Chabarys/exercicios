@@ -4,7 +4,6 @@
 <head>
 	<?php require("../def/head.php"); ?>
 	<title>Cadastro de Livros</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script type="text/javascript" src="js/livro.js"></script>
 </head>
 
@@ -12,21 +11,21 @@
 	<div class="container-fluid no-gutters px-0">
 		<div class="row no-gutters">
 			<!-- CADASTRO -->
-			<div class="col border-right">
+			<div id="div-cadastro" class="col border-right">
 				<div class="navbar bg-dark">
-					<button id="btnCriarNovo" type="button" class="btn btn-primary btn-sm" onclick="teste()">
+					<button id="btnCriarNovo" type="button" class="btn btn-primary btn-sm" onclick="criarNovoLivro()">
 						<span>Criar Livro</span>
 						<i class="fas fa-plus-square"></i>
 					</button>
-					<button id="btnGravar" type="button" class="btn btn-success btn-sm">
+					<button id="btnGravar" type="button" class="btn btn-success btn-sm" onclick="gravarNovoLivro()">
 						<span>Gravar Livro</span>
 						<i class="fas fa-check"></i>
 					</button>
-					<button id="btnCancelar" type="button" class="btn btn-warning btn-sm">
+					<button id="btnCancelar" type="button" class="btn btn-warning btn-sm" onclick="cancelar()">
 						<span>Cancelar</span>
 						<i class="fas fa-exclamation-triangle btn-sm"></i>
 					</button>
-					<button id="btnDeletar" type="button" class="btn btn-danger btn-sm">
+					<button id="btnDeletar" type="button" class="btn btn-danger btn-sm" onclick="deletarLivro()">
 						<span>Deletar Livro</span>
 						<i class="fas fa-trash"></i>
 					</button>
@@ -47,8 +46,8 @@
 					</div>
 					<div class="form-group col px-4">
 						<label for="nomeBiblioteca" class="col-form-label">Biblioteca:</label>
-						<select class="form-control" id="inputGroupSelect04" aria-label="Example select with button addon">
-							<option  disabled selected>Escolha a biblioteca</option>
+						<select class="form-control" id="nomeBiblioteca" aria-label="Example select with button addon">
+							<option  disabled selected>Escolha a Biblioteca</option>
 							<option value="1">biblioteca 1</option>
 							<option value="2">biblioteca 2</option>
 							<option value="3">biblioteca 3</option>
@@ -58,6 +57,7 @@
 						<label for="precoLivro" class="col-form-label">Preço:</label>
 						<input id="precoLivro" type="text" class="form-control col-9" placeholder="R$">
 					</div>
+			
 				</div>
 			</div>
 			<!-- GRADE DE LIVROS -->
