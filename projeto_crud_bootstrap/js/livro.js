@@ -1,14 +1,38 @@
 $(document).ready(function() { 
-    status(0);
+	status(0);
+	$("#idLivro").keypress(function(event) {
+        if (event.keyCode == 13) {
+			status(1)//carregar($(this).val());
+        }
+    });
 	$("#idLivro").focus();
 	$(window).unbind('resize').bind('resize', () => {
 		$('#div-cadastro').height(window.innerHeight - parseInt($("body").css("padding-bottom")));
 	}).trigger('resize')
 });
 
-function criarNovoLivro() {
+function criarLivro() {
 	status(1);
 	$("#nomeLivro").focus();
+	$.ajax({
+        url: "ajax/criarLivro.php", 
+        data: { 
+            idLivro: $('#idLivro').val(), 
+            nomeLivro: $('#nomeLivro').val(),
+            idBiblioteca: $('#idBiblioteca').val(),
+            precoLivro: $('#precoLivro').val()
+        },
+        success: function(result) {
+            switch (result.status) { 
+                case 0: 
+                    carregar(result.data.idlivro);
+                    break;
+                case 2: 
+                    alert(result.message);
+                    break;
+            }
+        }
+    });
 }
 
 function cancelar() {
@@ -16,15 +40,63 @@ function cancelar() {
 	$("#idLivro").focus();
 }
 
-function gravarNovoLivro(){
+function gravarLivro(){
 	status(0);
 	$("#idLivro").focus();
+	$.ajax({
+        url: "ajax/gravarLivro.php", 
+        data: {
+            idLivro: $('#idLivro').val(), 
+            nomeLivro: $('#nomeLivro').val(),
+            idbiBlioteca: $('#idBiblioteca').val(),
+            precoLivro: $('#precoLivro').val()
+        },
+        success: function(result) { // Quando o ajax der certo entra no sucess e executa função
+            switch (result.status) { 
+                case 0: // caso p status do result for 0 faça:
+                    carregar(result.data.idlivro);
+                    break;
+                case 2: // caso p status do result for 2 faça:
+                    alert(result.message);
+                    break;
+            }
+        }
+    });
 }
 
 function deletarLivro(){
 	status(0);
+	$.ajax({
+        url: "ajax/deletarLivro.php", 
+        data: { 
+            idLivro: $("#idLivro").val() 
+        },
+        success: function(result) { 
+            switch (result.status) { 
+                case 0:
+                    cancelar();
+                    alert("Livro deletado com sucesso");
+                    break;
+                case 2:
+                    alert(result.message);
+                    break;
+            }
+        }
+    });
 
 }
+function limpar() { 
+    $("input, select").val("");
+}
+
+$(function(){
+	$("#precoLivro").maskMoney({
+	   prefix: 'R$ ',
+	   allowNegative: true,
+	   thousands: '.',
+	   decimal: ','
+	});
+ });
 var _status = null;
 function status(status){
 	if (status === undefined) {

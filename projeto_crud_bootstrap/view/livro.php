@@ -13,11 +13,11 @@
 			<!-- CADASTRO -->
 			<div id="div-cadastro" class="col border-right">
 				<div class="navbar bg-dark">
-					<button id="btnCriarNovo" type="button" class="btn btn-primary btn-sm" onclick="criarNovoLivro()">
+					<button id="btnCriarNovo" type="button" class="btn btn-primary btn-sm" onclick="criarLivro()">
 						<span>Criar Livro</span>
 						<i class="fas fa-plus-square"></i>
 					</button>
-					<button id="btnGravar" type="button" class="btn btn-success btn-sm" onclick="gravarNovoLivro()">
+					<button id="btnGravar" type="button" class="btn btn-success btn-sm" onclick="gravarLivro()">
 						<span>Gravar Livro</span>
 						<i class="fas fa-check"></i>
 					</button>
@@ -47,7 +47,7 @@
 					<div class="form-group col px-4">
 						<label for="nomeBiblioteca" class="col-form-label">Biblioteca:</label>
 						<select class="form-control" id="nomeBiblioteca" aria-label="Example select with button addon">
-							<option  disabled selected>Escolha a Biblioteca</option>
+							<option value="" disabled selected>Escolha a Biblioteca</option>
 							<option value="1">biblioteca 1</option>
 							<option value="2">biblioteca 2</option>
 							<option value="3">biblioteca 3</option>
@@ -55,14 +55,14 @@
 					</div>
 					<div class="form-group col offset-md-1">
 						<label for="precoLivro" class="col-form-label">Preço:</label>
-						<input id="precoLivro" type="text" class="form-control col-9" placeholder="R$">
+						<input id="precoLivro" type="text" class="form-control col-9" placeholder="R$" min="1" max="10">
 					</div>
 			
 				</div>
 			</div>
 			<!-- GRADE DE LIVROS -->
 			<div class="col no-gutters">
-				<table class="table">
+				<table class="table table-hover">
 					<caption class="mx-1">
 						<span>Lista de Livros</span>
 						<i class="fas fa-book"></i>
@@ -91,6 +91,27 @@
 							<td>R$ 10,00</td>
 							<td>28/06/2019</td>
 						</tr>
+						<tr class="">
+							<th>3</th>
+							<td>Livro 3</td>
+							<td>Biblioteca 3</td>
+							<td>R$ 10,00</td>
+							<td>28/06/2019</td>
+						</tr>
+						<tr class="">
+							<th>4</th>
+							<td>Livro 4</td>
+							<td>Biblioteca 4</td>
+							<td>R$ 10,00</td>
+							<td>28/06/2019</td>
+						</tr>
+						<tr class="">
+							<th>5</th>
+							<td>Livro 5</td>
+							<td>Biblioteca 5</td>
+							<td>R$ 10,00</td>
+							<td>28/06/2019</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -103,6 +124,7 @@
 			<span class="ml-md-5 text-white">ControlWare</span><br>
 		</div>
 	</div>
+	
 </body>
 
 </html>
