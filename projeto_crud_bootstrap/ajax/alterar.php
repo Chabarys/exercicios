@@ -2,10 +2,10 @@
 
 require("../def/function.php");
 
-$idLivro = $_GET["idLivro"];
-$nomeLivro = $_GET["nomeLivro"];
-$idBiblioteca = $_GET["idBiblioteca"];
-$precoLivro = $_GET["precoLivro"];
+$idLivro = $_REQUEST["idLivro"];
+$nomeLivro = $_REQUEST["nomeLivro"];
+$idBiblioteca = $_REQUEST["idBiblioteca"];
+$precoLivro = $_REQUEST["precoLivro"];
 
 $precoLivro = value_number($precoLivro);
 

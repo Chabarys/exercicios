@@ -1,6 +1,7 @@
 <?php
-	require("../def/function.php");
-	$connection = connection();?>
+	//require("../def/function.php");
+	//$connection = connection();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -16,7 +17,7 @@
 			<!-- CADASTRO -->
 			<div id="div-cadastro" class="col border-right">
 				<div class="navbar bg-dark">
-					<button id="btnCriarNovo" type="button" class="btn btn-primary btn-sm" onclick="inserirNovo()">
+					<button id="btnCriarNovo" type="button" class="btn btn-primary btn-sm" onclick="">
 						<span>Criar Livro</span>
 						<i class="fas fa-plus-square"></i>
 					</button>
@@ -28,7 +29,7 @@
 						<span>Cancelar</span>
 						<i class="fas fa-exclamation-triangle btn-sm"></i>
 					</button>
-					<button id="btnDeletar" type="button" class="btn btn-danger btn-sm" onclick="deletarLivro()">
+					<button id="btnDeletar" type="button" class="btn btn-danger btn-sm" onclick="">
 						<span>Deletar Livro</span>
 						<i class="fas fa-trash"></i>
 					</button>

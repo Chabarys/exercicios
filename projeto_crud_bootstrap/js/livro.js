@@ -21,12 +21,13 @@ $.ajaxSetup({
 });
 
 function cancelar() {
-	status(0);
+    status(0);
+    limpar();
 	$("#idLivro").focus();
 }
 
 var _carregar_ajax = null;
-function carregar(idlivro) {
+function carregar(idLivro) {
 	if(_carregar_ajax !== null){
 		return false; 
 	}
@@ -55,6 +56,28 @@ function carregar(idlivro) {
     });
 }
 
+function deletarLivro(){
+	if (!confirm("Tem certeza que dejesa dele o livro?")) {
+        return false;
+    }
+    $.ajax({
+        url: "ajax/deletarLivro.php", 
+        data: { 
+            idlivro: $("#idLivro").val() 
+        },
+        success: function(result) { 
+            switch (result.status) { 
+                case 0: 
+                    cancelar();
+                    alert("Livro deletado com sucesso");
+                    break;
+                case 2: 
+                    alert(result.message);
+                    break;
+            }
+        }
+    });
+}
 
 /*function grade() {
 	$.ajax({
@@ -110,28 +133,7 @@ function gravarLivro() {
     });
 }
 
-function deletarLivro(){
-	if (!confirm("Tem certeza que dejesa dele o livro?")) {
-        return false;
-    }
-    $.ajax({
-        url: "ajax/deletarLivro.php", 
-        data: { 
-            idlivro: $("#idLivro").val() 
-        },
-        success: function(result) { 
-            switch (result.status) { 
-                case 0: 
-                    cancelar();
-                    alert("Livro deletado com sucesso");
-                    break;
-                case 2: 
-                    alert(result.message);
-                    break;
-            }
-        }
-    });
-}
+
 function limpar() { 
     $("input, select").val("");
 }

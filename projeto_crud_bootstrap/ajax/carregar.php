@@ -2,7 +2,7 @@
 
 require("../def/function.php");
 
-$idLivro = $_GET["idLivro"];
+$idLivro = $_REQUEST["idLivro"];
 
 $connection = connection();
 
@@ -24,9 +24,9 @@ $horaCriacao = substr($horaCriacao, 0, 8);
 $criadoEm = $dataCriacao." ".$horaCriacao; 
  
 json_success(array(
-    "idlivro" => $livro["idlivro"],
-    "nome" => $livro["nome"],
-    "idbiblioteca" => $livro["idbiblioteca"],
-    "preco" => number_format($livro["preco"], 2, ",", "."),
-    "criadoem" => $criadoEm
+    "idLivro" => $livro["idlivro"],
+    "nomeLivro" => $livro["nome"],
+    "idBiblioteca" => $livro["idbiblioteca"],
+    "precoLivro" => number_format($livro["preco"], 2, ",", "."),
+    "criadoEm" => $criadoEm
 ));

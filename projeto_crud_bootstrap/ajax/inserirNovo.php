@@ -2,9 +2,9 @@
 
 require("../def/function.php"); 
 
-$nome =  $_GET["nomeLivro"];
-$idbiblioteca = $_GET["idBiblioteca"];
-$precoLivro = $_GET["precoLivro"];
+$nome =  $_REQUEST["nomeLivro"];
+$idbiblioteca = $_REQUEST["idBiblioteca"];
+$precoLivro = $_REQUEST["precoLivro"];
 
 session_start();
 
