@@ -1,6 +1,8 @@
 <?php
 
-$nome = filter_input(INPUT_GET, "nomeLivro", FILTER_SANITIZE_STRING);
+require("../def/function.php"); 
+
+$nome =  $_GET["nomeLivro"];
 $idbiblioteca = $_GET["idBiblioteca"];
 $precoLivro = $_GET["precoLivro"];
 
@@ -13,7 +15,7 @@ $connection = connection();
 $result = $connection->query("SELECT MAX(idlivro) FROM livro");
 $idLivro = $result->fetchColumn() + 1; 
 
-$result = $connection->query("INSERT INTO  livro (idlivro, nome, preco, idbiblioteca) VALUES ({$idLivro}, '{$nomeLivro}', {$precoLivro}, {$idbiBlioteca})");
+$result = $connection->query("INSERT INTO livro (idlivro, nome, preco, idbiblioteca) VALUES ({$idLivro}, '{$nomeLivro}', {$precoLivro}, {$idBiblioteca})");
 if($result === false){
     $erro = $connection->errorInfo(); 
     json_error($erro[2]);
@@ -22,3 +24,4 @@ if($result === false){
 json_success(array(
     "idlivro" => $idLivro
 )); 
+

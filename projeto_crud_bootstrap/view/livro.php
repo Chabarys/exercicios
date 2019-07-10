@@ -1,3 +1,6 @@
+<?php
+	require("../def/function.php");
+	$connection = connection();?>
 <!DOCTYPE html>
 <html>
 
@@ -13,15 +16,15 @@
 			<!-- CADASTRO -->
 			<div id="div-cadastro" class="col border-right">
 				<div class="navbar bg-dark">
-					<button id="btnCriarNovo" type="button" class="btn btn-primary btn-sm" onclick="criarLivro()">
+					<button id="btnCriarNovo" type="button" class="btn btn-primary btn-sm" onclick="inserirNovo()">
 						<span>Criar Livro</span>
 						<i class="fas fa-plus-square"></i>
 					</button>
-					<button id="btnGravar" type="button" class="btn btn-success btn-sm" onclick="gravarLivro()">
+					<button id="btnGravar" type="button" class="btn btn-success btn-sm" onclick="">
 						<span>Gravar Livro</span>
 						<i class="fas fa-check"></i>
 					</button>
-					<button id="btnCancelar" type="button" class="btn btn-warning btn-sm" onclick="cancelar()">
+					<button id="btnCancelar" type="button" class="btn btn-warning btn-sm" onclick="">
 						<span>Cancelar</span>
 						<i class="fas fa-exclamation-triangle btn-sm"></i>
 					</button>
@@ -62,7 +65,7 @@
 			</div>
 			<!-- GRADE DE LIVROS -->
 			<div class="col no-gutters">
-				<table class="table table-hover">
+				<table id="grade" class="table table-hover">
 					<caption class="mx-1">
 						<span>Lista de Livros</span>
 						<i class="fas fa-book"></i>
@@ -76,43 +79,7 @@
 							<th scope="col">Criado em</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr class="">
-							<th>1</th>
-							<td>Livro 1</td>
-							<td>Biblioteca 1</td>
-							<td>R$ 10,00</td>
-							<td>28/06/2019</td>
-						</tr>	
-						<tr class="">
-							<th>2</th>
-							<td>Livro 2</td>
-							<td>Biblioteca 2</td>
-							<td>R$ 10,00</td>
-							<td>28/06/2019</td>
-						</tr>
-						<tr class="">
-							<th>3</th>
-							<td>Livro 3</td>
-							<td>Biblioteca 3</td>
-							<td>R$ 10,00</td>
-							<td>28/06/2019</td>
-						</tr>
-						<tr class="">
-							<th>4</th>
-							<td>Livro 4</td>
-							<td>Biblioteca 4</td>
-							<td>R$ 10,00</td>
-							<td>28/06/2019</td>
-						</tr>
-						<tr class="">
-							<th>5</th>
-							<td>Livro 5</td>
-							<td>Biblioteca 5</td>
-							<td>R$ 10,00</td>
-							<td>28/06/2019</td>
-						</tr>
-					</tbody>
+					<tbody></tbody>
 				</table>
 			</div>
 		</div>

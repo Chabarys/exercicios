@@ -2,32 +2,52 @@ $(document).ready(function() {
 	status(0);
 	$("#idLivro").keypress(function(event) {
         if (event.keyCode == 13) {
-			status(1)//carregar($(this).val());
+			carregar($(this).val());
         }
-    });
+	});
+	
+
 	$("#idLivro").focus();
 	$(window).unbind('resize').bind('resize', () => {
 		$('#div-cadastro').height(window.innerHeight - parseInt($("body").css("padding-bottom")));
 	}).trigger('resize')
 });
 
-function criarLivro() {
-	status(1);
-	$("#nomeLivro").focus();
-	$.ajax({
-        url: "ajax/criarLivro.php", 
-        data: { 
-            idLivro: $('#idLivro').val(), 
-            nomeLivro: $('#nomeLivro').val(),
-            idBiblioteca: $('#idBiblioteca').val(),
-            precoLivro: $('#precoLivro').val()
-        },
+$.ajaxSetup({ 
+	dataType: 'json',
+	error: function(){ 
+		alert("Houve uma falha de conexão.\n	Verifique sua internet.");
+	}
+});
+
+function cancelar() {
+	status(0);
+	$("#idLivro").focus();
+}
+
+var _carregar_ajax = null;
+function carregar(idlivro) {
+	if(_carregar_ajax !== null){
+		return false; 
+	}
+    _carregar_ajax = $.ajax({
+        url: "ajax/carregar.php", 
+        data: {
+            idLivro: idLivro
+		},
+		complete: function(){
+			_carregar_ajax = null;
+		},
         success: function(result) {
-            switch (result.status) { 
-                case 0: 
-                    carregar(result.data.idlivro);
+            switch (result.status) {
+                case 0:
+                    status(2);
+                    for (let id in result.data) {
+                        let valor = result.data[id];
+                        $("#" + id).val(valor);
+                    }
                     break;
-                case 2: 
+                case 2:
                     alert(result.message);
                     break;
             }
@@ -35,20 +55,46 @@ function criarLivro() {
     });
 }
 
-function cancelar() {
-	status(0);
-	$("#idLivro").focus();
-}
 
-function gravarLivro(){
-	status(0);
+/*function grade() {
+	$.ajax({
+        url: "ajax/grade.php", 
+        success: function(result) {
+            switch (result.status) {
+                case 0:
+                    $("#grade tbody").html(""); 
+                    for (const livro of result.data) {
+                        const dataCriacao = livro.datacriacao.split("-").reverse().join("/"); 
+                        const horaCriacao = livro.horacriacao.substr(0, 8);
+                        const precoLivro = parseFloat(livro.preco).toLocaleString('pt-Br', { minimumFractionDigits: 2 });
+                        const tds = [
+                            `<td style='text-align: right'>${livro.idlivro}</td>`,
+                            `<td>${livro.nome}</td>`,
+                            `<td>${livro.biblioteca}</td>`,
+                            `<td style='text-align: right'>R$ ${precoLivro}</td>`,
+                            `<td style='text-align: center'>${dataCriacao} - ${horaCriacao}</td>`
+                        ].join("");
+                        $("#grade tbody").append(`<tr onclick='carregar(${livro.idlivro})'>${tds}</tr>`);
+                    }
+                    break;
+                case 2:
+                    alert(result.message);
+                    break;
+            }
+        }
+	});
+}*/
+
+function gravarLivro() {
+	let arquivo = (status() === 1 ? 'inserirNovo.php' : 'alterar.php');
+	
 	$("#idLivro").focus();
 	$.ajax({
-        url: "ajax/gravarLivro.php", 
+        url: "ajax/" + arquivo, 
         data: {
             idLivro: $('#idLivro').val(), 
             nomeLivro: $('#nomeLivro').val(),
-            idbiBlioteca: $('#idBiblioteca').val(),
+            idBiblioteca: $('#idBiblioteca').val(),
             precoLivro: $('#precoLivro').val()
         },
         success: function(result) { // Quando o ajax der certo entra no sucess e executa função
@@ -65,25 +111,26 @@ function gravarLivro(){
 }
 
 function deletarLivro(){
-	status(0);
-	$.ajax({
+	if (!confirm("Tem certeza que dejesa dele o livro?")) {
+        return false;
+    }
+    $.ajax({
         url: "ajax/deletarLivro.php", 
         data: { 
-            idLivro: $("#idLivro").val() 
+            idlivro: $("#idLivro").val() 
         },
         success: function(result) { 
             switch (result.status) { 
-                case 0:
+                case 0: 
                     cancelar();
                     alert("Livro deletado com sucesso");
                     break;
-                case 2:
+                case 2: 
                     alert(result.message);
                     break;
             }
         }
     });
-
 }
 function limpar() { 
     $("input, select").val("");
