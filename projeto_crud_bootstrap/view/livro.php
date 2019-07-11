@@ -1,6 +1,7 @@
 <?php
-	//require("../def/function.php");
-	//$connection = connection();
+require("../def/function.php");
+
+$connection = connection();
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,19 +18,19 @@
 			<!-- CADASTRO -->
 			<div id="div-cadastro" class="col border-right">
 				<div class="navbar bg-dark">
-					<button id="btnCriarNovo" type="button" class="btn btn-primary btn-sm" onclick="">
+					<button id="btnCriarNovo" type="button" class="btn btn-primary btn-sm" onclick="inserirNovo()">
 						<span>Criar Livro</span>
 						<i class="fas fa-plus-square"></i>
 					</button>
-					<button id="btnGravar" type="button" class="btn btn-success btn-sm" onclick="">
+					<button id="btnGravar" type="button" class="btn btn-success btn-sm" onclick="gravarLivro()">
 						<span>Gravar Livro</span>
 						<i class="fas fa-check"></i>
 					</button>
-					<button id="btnCancelar" type="button" class="btn btn-warning btn-sm" onclick="">
+					<button id="btnCancelar" type="button" class="btn btn-warning btn-sm" onclick="cancelar()">
 						<span>Cancelar</span>
 						<i class="fas fa-exclamation-triangle btn-sm"></i>
 					</button>
-					<button id="btnDeletar" type="button" class="btn btn-danger btn-sm" onclick="">
+					<button id="btnDeletar" type="button" class="btn btn-danger btn-sm" onclick="deletarLivro()">
 						<span>Deletar Livro</span>
 						<i class="fas fa-trash"></i>
 					</button>
@@ -49,19 +50,23 @@
 						<input id="nomeLivro" type="text" class="form-control col-7" placeholder="Informe o Nome do Livro">
 					</div>
 					<div class="form-group col px-4">
-						<label for="nomeBiblioteca" class="col-form-label">Biblioteca:</label>
-						<select class="form-control" id="nomeBiblioteca" aria-label="Example select with button addon">
-							<option value="" disabled selected>Escolha a Biblioteca</option>
-							<option value="1">biblioteca 1</option>
-							<option value="2">biblioteca 2</option>
-							<option value="3">biblioteca 3</option>
+						<label for="idBiblioteca" class="col-form-label">Biblioteca:</label>
+						<select class="form-control" id="idBiblioteca" aria-label="Example select with button addon">
+							<option value=""></option>
+							<?php
+							$res = $connection->query("SELECT idbiblioteca, nome FROM biblioteca ORDER BY nome");
+							$arr = $res->fetchAll(2);
+							foreach ($arr as $row) {
+								echo "<option value='{$row["idbiblioteca"]}'>{$row["nome"]}</option>";
+							}
+							?>
 						</select>
 					</div>
 					<div class="form-group col offset-md-1">
 						<label for="precoLivro" class="col-form-label">Preço:</label>
 						<input id="precoLivro" type="text" class="form-control col-9" placeholder="R$" min="1" max="10">
 					</div>
-			
+
 				</div>
 			</div>
 			<!-- GRADE DE LIVROS -->
@@ -92,7 +97,7 @@
 			<span class="ml-md-5 text-white">ControlWare</span><br>
 		</div>
 	</div>
-	
+
 </body>
 
 </html>

@@ -32,7 +32,7 @@ function carregar(idlivro) {
 		return false; // Nao deixa seguir enquanto nao finalizar o ajax anterior
 	}
     _carregar_ajax = $.ajax({
-        url: "../ajax/livro/carregar.php", // Arquivo que o ajax será enviado
+        url: "../ajax/livro/.php", // Arquivo que o ajax será enviado
         data: { // Dados que será passado para o ajax
             idlivro: idlivro
 		},

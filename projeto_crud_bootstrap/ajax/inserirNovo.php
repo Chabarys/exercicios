@@ -2,7 +2,7 @@
 
 require("../def/function.php"); 
 
-$nome =  $_REQUEST["nomeLivro"];
+$nomeLivro =  $_REQUEST["nomeLivro"];
 $idbiblioteca = $_REQUEST["idBiblioteca"];
 $precoLivro = $_REQUEST["precoLivro"];
 

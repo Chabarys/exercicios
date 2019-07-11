@@ -5,9 +5,11 @@ $(document).ready(function() {
 			carregar($(this).val());
         }
 	});
-	
+
+	grade();
 
 	$("#idLivro").focus();
+
 	$(window).unbind('resize').bind('resize', () => {
 		$('#div-cadastro').height(window.innerHeight - parseInt($("body").css("padding-bottom")));
 	}).trigger('resize')
@@ -63,7 +65,7 @@ function deletarLivro(){
     $.ajax({
         url: "ajax/deletarLivro.php", 
         data: { 
-            idlivro: $("#idLivro").val() 
+            idLivro: $("#idLivro").val() 
         },
         success: function(result) { 
             switch (result.status) { 
@@ -79,23 +81,23 @@ function deletarLivro(){
     });
 }
 
-/*function grade() {
-	$.ajax({
+function grade() { 
+    $.ajax({
         url: "ajax/grade.php", 
         success: function(result) {
             switch (result.status) {
                 case 0:
                     $("#grade tbody").html(""); 
                     for (const livro of result.data) {
-                        const dataCriacao = livro.datacriacao.split("-").reverse().join("/"); 
+                        const dataCriacao = livro.datacriacao.split("-").reverse().join("/");
                         const horaCriacao = livro.horacriacao.substr(0, 8);
-                        const precoLivro = parseFloat(livro.preco).toLocaleString('pt-Br', { minimumFractionDigits: 2 });
+                        const precoLivro = parseFloat(livro.precoLivro).toLocaleString('pt-Br', { minimumFractionDigits: 2 });
                         const tds = [
                             `<td style='text-align: right'>${livro.idlivro}</td>`,
                             `<td>${livro.nome}</td>`,
                             `<td>${livro.biblioteca}</td>`,
-                            `<td style='text-align: right'>R$ ${precoLivro}</td>`,
-                            `<td style='text-align: center'>${dataCriacao} - ${horaCriacao}</td>`
+                            `<td style='text-align: right'>R$${livro.preco}</td>`,
+                            `<td style='text-align: center'>${dataCriacao}-${horaCriacao}</td>`
                         ].join("");
                         $("#grade tbody").append(`<tr onclick='carregar(${livro.idlivro})'>${tds}</tr>`);
                     }
@@ -105,8 +107,8 @@ function deletarLivro(){
                     break;
             }
         }
-	});
-}*/
+    });
+}
 
 function gravarLivro() {
 	let arquivo = (status() === 1 ? 'inserirNovo.php' : 'alterar.php');
@@ -120,12 +122,12 @@ function gravarLivro() {
             idBiblioteca: $('#idBiblioteca').val(),
             precoLivro: $('#precoLivro').val()
         },
-        success: function(result) { // Quando o ajax der certo entra no sucess e executa função
+        success: function(result) { 
             switch (result.status) { 
-                case 0: // caso p status do result for 0 faça:
-                    carregar(result.data.idlivro);
+                case 0: 
+                    carregar(result.data.idLivro);
                     break;
-                case 2: // caso p status do result for 2 faça:
+                case 2: 
                     alert(result.message);
                     break;
             }
@@ -133,6 +135,11 @@ function gravarLivro() {
     });
 }
 
+function inserirNovo() { 
+    status(1); 
+    limpar(); 
+    $("#nomeLivro").focus(); 
+}
 
 function limpar() { 
     $("input, select").val("");
@@ -157,11 +164,11 @@ function status(status){
 				$("#btnCriarNovo").attr("disabled", false);
 				$("#btnGravar").attr("disabled", true);
 				$("#btnCancelar").attr("disabled", true);
-				$("#btnDeletar").attr("disabled", false);
+				$("#btnDeletar").attr("disabled", true);
 				$("#idLivro").attr("disabled", false);
 				$("#criadoEm").attr("disabled", true);
 				$("#nomeLivro").attr("disabled", true);
-				$("#nomeBiblioteca").attr("disabled", true);
+				$("#idBiblioteca").attr("disabled", true);
 				$("#precoLivro").attr("disabled", true);
 			break;
 			case 1:
@@ -172,18 +179,18 @@ function status(status){
 				$("#idLivro").attr("disabled", true);
 				$("#criadoEm").attr("disabled", true);
 				$("#nomeLivro").attr("disabled", false);
-				$("#nomeBiblioteca").attr("disabled", false);
+				$("#idBiblioteca").attr("disabled", false);
 				$("#precoLivro").attr("disabled", false);
 			break;
 			case 2:
 				$("#btnCriarNovo").attr("disabled", false);
 				$("#btnGravar").attr("disabled", true);
-				$("#btnCancelar").attr("disabled", true);
-				$("#btnDeletar").attr("disabled", true);
+				$("#btnCancelar").attr("disabled", false);
+				$("#btnDeletar").attr("disabled", false);
 				$("#idLivro").attr("disabled", true);
 				$("#criadoEm").attr("disabled", true);
 				$("#nomeLivro").attr("disabled", false);
-				$("#nomeBiblioteca").attr("disabled", false);
+				$("#idBiblioteca").attr("disabled", false);
 				$("#precoLivro").attr("disabled", false);
 			break;
 		}

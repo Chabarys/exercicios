@@ -6,7 +6,7 @@ $idLivro = $_REQUEST["idLivro"];
 
 $connection = connection();
 
-$result = $connection->query("SELECT * FROM livro WHERE idlivro = {$idlivro}");
+$result = $connection->query("SELECT * FROM livro WHERE idlivro = {$idLivro}");
 $arr = $result->fetchAll(2);
 if(count($arr) === 0){
     json_error("Livro não encontrado!");
