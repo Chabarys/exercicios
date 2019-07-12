@@ -14,7 +14,7 @@ function json_success($data = []){
     die(json_encode($json)); 
 }
 
-/*function value_number($value){ 
+function value_number($value){ 
     $pos_virgula = strpos($value, ","); 
     $pos_ponto = strpos($value, "."); 
 	
@@ -31,4 +31,4 @@ function json_success($data = []){
         $value = str_replace(",", ".", $value); 
     }
     return $value; 
-}*/
+}

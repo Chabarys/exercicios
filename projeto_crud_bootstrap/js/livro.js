@@ -91,12 +91,12 @@ function grade() {
                     for (const livro of result.data) {
                         const dataCriacao = livro.datacriacao.split("-").reverse().join("/");
                         const horaCriacao = livro.horacriacao.substr(0, 8);
-                        const precoLivro = parseFloat(livro.precoLivro).toLocaleString('pt-Br', { minimumFractionDigits: 2 });
+                        const precoLivro = parseFloat(livro.preco).toLocaleString('pt-Br', { minimumFractionDigits: 2 });
                         const tds = [
                             `<td style='text-align: right'>${livro.idlivro}</td>`,
                             `<td>${livro.nome}</td>`,
                             `<td>${livro.biblioteca}</td>`,
-                            `<td style='text-align: right'>R$${livro.preco}</td>`,
+                            `<td style='text-align: right'>R$${precoLivro}</td>`,
                             `<td style='text-align: center'>${dataCriacao}-${horaCriacao}</td>`
                         ].join("");
                         $("#grade tbody").append(`<tr onclick='carregar(${livro.idlivro})'>${tds}</tr>`);
@@ -183,8 +183,8 @@ function status(status){
 				$("#precoLivro").attr("disabled", false);
 			break;
 			case 2:
-				$("#btnCriarNovo").attr("disabled", false);
-				$("#btnGravar").attr("disabled", true);
+				$("#btnCriarNovo").attr("disabled", true);
+				$("#btnGravar").attr("disabled", false);
 				$("#btnCancelar").attr("disabled", false);
 				$("#btnDeletar").attr("disabled", false);
 				$("#idLivro").attr("disabled", true);

@@ -21,7 +21,7 @@ $dataCriacao = implode("/", $dataCriacao);
 $horaCriacao = $livro["horacriacao"];
 $horaCriacao = substr($horaCriacao, 0, 8);
 
-$criadoEm = $dataCriacao." ".$horaCriacao; 
+$criadoEm = $dataCriacao." às ".$horaCriacao; 
  
 json_success(array(
     "idLivro" => $livro["idlivro"],

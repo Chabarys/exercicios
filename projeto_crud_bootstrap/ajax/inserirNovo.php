@@ -3,7 +3,7 @@
 require("../def/function.php"); 
 
 $nomeLivro =  $_REQUEST["nomeLivro"];
-$idbiblioteca = $_REQUEST["idBiblioteca"];
+$idBiblioteca = $_REQUEST["idBiblioteca"];
 $precoLivro = $_REQUEST["precoLivro"];
 
 session_start();

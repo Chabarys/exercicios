@@ -52,7 +52,7 @@ $connection = connection();
 					<div class="form-group col px-4">
 						<label for="idBiblioteca" class="col-form-label">Biblioteca:</label>
 						<select class="form-control" id="idBiblioteca" aria-label="Example select with button addon">
-							<option value=""></option>
+							<option value="" selected disabled>Escolha a biblioteca</option>
 							<?php
 							$res = $connection->query("SELECT idbiblioteca, nome FROM biblioteca ORDER BY nome");
 							$arr = $res->fetchAll(2);
