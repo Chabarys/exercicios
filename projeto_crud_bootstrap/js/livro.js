@@ -12,6 +12,15 @@ $(document).ready(function() {
 
 	$(window).unbind('resize').bind('resize', () => {
 		$('#div-cadastro').height(window.innerHeight - parseInt($("body").css("padding-bottom")));
+
+		let largura_sm = 767;
+		if(window.innerWidth <= largura_sm){
+			if($("#div-cadastro").is(":visible") && $("#div-grade").is(":visible")){
+				$("#div-grade").hide();
+			}
+		}else{
+			$("#div-cadastro, #div-grade").show();
+		}
 	}).trigger('resize')
 });
 

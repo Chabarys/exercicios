@@ -9671,5 +9671,14 @@ h3 {
     border-color: #dee2e6;
   }
 }
+#sizes {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  background-color: #f00;
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 0.25rem;
+}
 
 /*# sourceMappingURL=main.css.map */

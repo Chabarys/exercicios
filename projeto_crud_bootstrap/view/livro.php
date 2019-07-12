@@ -15,6 +15,11 @@ $connection = connection();
 <body class="bg-light">
 	<div class="container-fluid no-gutters px-0">
 		<div class="row no-gutters">
+
+			<!--
+			Botoes para alterar telas (cadastro e grade)
+			-->
+
 			<!-- CADASTRO -->
 			<div id="div-cadastro" class="col border-right">
 				<div class="navbar bg-dark">
@@ -35,21 +40,22 @@ $connection = connection();
 						<i class="fas fa-trash"></i>
 					</button>
 				</div>
-				<div class="form-row">
-					<div class="form-group col px-4 ">
+				<div class="form-row px-4">
+					<div class="form-group col-4 col-lg-3">
 						<label for="idLivro" class="col-form-label">ID:</label>
-						<input id="idLivro" type="number" class="form-control col-4">
+						<input id="idLivro" type="number" class="form-control">
 					</div>
-					<div class="form-group col offset-md-1">
+					<div class="form-group col-6 offset-2 col-lg-4 offset-lg-5">
 						<label for="criadoEm" class="col-form-label">Criado em:</label>
-						<input id="criadoEm" type="text" class="form-control col-9" disabled>
+						<input id="criadoEm" type="text" class="form-control" disabled>
 					</div>
-
-					<div class="form-group col-12 px-4">
+					<div class="w-100"></div>
+					<div class="form-group col-6">
 						<label for="nomeLivro" class="col-form-label">Nome do Livro:</label>
-						<input id="nomeLivro" type="text" class="form-control col-7" placeholder="Informe o Nome do Livro">
+						<input id="nomeLivro" type="text" class="form-control" placeholder="Informe o Nome do Livro">
 					</div>
-					<div class="form-group col px-4">
+					<div class="w-100"></div>
+					<div class="form-group col-md-6">
 						<label for="idBiblioteca" class="col-form-label">Biblioteca:</label>
 						<select class="form-control" id="idBiblioteca" aria-label="Example select with button addon">
 							<option value="" selected disabled>Escolha a biblioteca</option>
@@ -62,15 +68,15 @@ $connection = connection();
 							?>
 						</select>
 					</div>
-					<div class="form-group col offset-md-1">
+					<div class="form-group col-md-5 offset-md-1">
 						<label for="precoLivro" class="col-form-label">Preço:</label>
-						<input id="precoLivro" type="text" class="form-control col-9" placeholder="R$" min="1" max="10">
+						<input id="precoLivro" type="text" class="form-control" placeholder="R$" min="1" max="10">
 					</div>
 
 				</div>
 			</div>
 			<!-- GRADE DE LIVROS -->
-			<div class="col no-gutters">
+			<div id="div-grade" class="col no-gutters">
 				<table id="grade" class="table table-hover">
 					<caption class="mx-1">
 						<span>Lista de Livros</span>
@@ -98,6 +104,13 @@ $connection = connection();
 		</div>
 	</div>
 
+	<div id="sizes">
+		<div class="d-block d-sm-none">XS</div>
+		<div class="d-none d-sm-block d-md-none">SM</div>
+		<div class="d-none d-md-block d-lg-none">MD</div>
+		<div class="d-none d-lg-block d-xl-none">LG</div>
+		<div class="d-none d-xl-block">XL</div>
+	</div>
 </body>
 
 </html>
