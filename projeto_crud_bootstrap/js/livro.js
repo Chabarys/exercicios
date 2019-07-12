@@ -18,7 +18,7 @@ $(document).ready(function() {
 $.ajaxSetup({ 
 	dataType: 'json',
 	error: function(){ 
-		alert("Houve uma falha de conexão.\n	Verifique sua internet.");
+		console.log("Houve uma falha de conexão.\n	Verifique sua internet.");
 	}
 });
 
@@ -55,7 +55,9 @@ function carregar(idLivro) {
                     break;
             }
         }
-    });
+	});
+	grade();
+
 }
 
 function deletarLivro(){
@@ -76,9 +78,11 @@ function deletarLivro(){
                 case 2: 
                     alert(result.message);
                     break;
-            }
+			}
+			grade();
         }
-    });
+	});
+	
 }
 
 function grade() { 
@@ -120,7 +124,7 @@ function gravarLivro() {
             idLivro: $('#idLivro').val(), 
             nomeLivro: $('#nomeLivro').val(),
             idBiblioteca: $('#idBiblioteca').val(),
-            precoLivro: $('#precoLivro').val()
+            precoLivro: $('#precoLivro').val().replace("R$ ", "")
         },
         success: function(result) { 
             switch (result.status) { 
@@ -132,12 +136,13 @@ function gravarLivro() {
                     break;
             }
         }
-    });
+	});
+	grade();
 }
 
 function inserirNovo() { 
     status(1); 
-    limpar(); 
+    limpar();
     $("#nomeLivro").focus(); 
 }
 
