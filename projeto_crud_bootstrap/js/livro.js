@@ -112,7 +112,7 @@ function grade() {
                             `<td style='text-align: right'>R$${precoLivro}</td>`,
                             `<td class="d-none d-lg-block" style='text-align: center'>${dataCriacao}-${horaCriacao}</td>`
                         ].join("");
-                        $("#grade tbody").append(`<tr onclick='carregar(${livro.idlivro})'>${tds}</tr>`);
+                        $("#grade tbody").append(`<tr style="cursor: pointer" onclick='carregar(${livro.idlivro})'>${tds}</tr>`);
                     }
                     break;
                 case 2:
