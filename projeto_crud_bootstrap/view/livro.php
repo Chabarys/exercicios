@@ -13,15 +13,26 @@ $connection = connection();
 </head>
 
 <body class="bg-light">
-	<div class="container-fluid no-gutters px-0">
+	<div class="container-fluid no-gutters px-0">	
+		<div class="navbar bg-dark d-none d-sm-block d-md-none d-block d-sm-none">
+			<ul class="nav">
+				<li class="nav-item col">
+					<a class="nav-link active text-white" href="#">
+						<i class="fas fa-book-open"></i>
+						<span>Cadastro de Livros</span>
+					</a>
+				</li>
+				<li class="nav-item col">
+					<a class="nav-link text-white" href="#">
+						<i class="fas fa-list-ol"></i>
+						<span>Lista de Livros</span>
+					</a>
+				</li>
+			</ul>
+		</div>
 		<div class="row no-gutters">
-
-			<!--
-			Botoes para alterar telas (cadastro e grade)
-			-->
-
 			<!-- CADASTRO -->
-			<div id="div-cadastro" class="col border-right">
+			<div id="div-cadastro" class="col-12 col-md-6 border-right">
 				<div class="navbar bg-dark">
 					<button id="btnCriarNovo" type="button" class="btn btn-primary btn-sm" onclick="inserirNovo()">
 						<span>Criar Livro</span>
@@ -50,14 +61,14 @@ $connection = connection();
 						<input id="criadoEm" type="text" class="form-control" disabled>
 					</div>
 					<div class="w-100"></div>
-					<div class="form-group col-6">
+					<div class="form-group col-lg-6 col-sm-12">
 						<label for="nomeLivro" class="col-form-label">Nome do Livro:</label>
 						<input id="nomeLivro" type="text" class="form-control" placeholder="Informe o Nome do Livro">
 					</div>
 					<div class="w-100"></div>
 					<div class="form-group col-md-6">
 						<label for="idBiblioteca" class="col-form-label">Biblioteca:</label>
-						<select class="form-control" id="idBiblioteca" aria-label="Example select with button addon">
+						<select class="form-control" id="idBiblioteca">
 							<option value="" selected disabled>Escolha a biblioteca</option>
 							<?php
 							$res = $connection->query("SELECT idbiblioteca, nome FROM biblioteca ORDER BY nome");
@@ -76,7 +87,7 @@ $connection = connection();
 				</div>
 			</div>
 			<!-- GRADE DE LIVROS -->
-			<div id="div-grade" class="col no-gutters">
+			<div id="div-grade" class="col-6 no-gutters">
 				<table id="grade" class="table table-hover">
 					<caption class="mx-1">
 						<span>Lista de Livros</span>
@@ -84,11 +95,11 @@ $connection = connection();
 					</caption>
 					<thead class="table-dark table-bordered">
 						<tr>
-							<th scope="col">ID</th>
+							<th scope="col" class="d-none d-lg-block">ID</th>
 							<th scope="col">Livro</th>
 							<th scope="col">Biblioteca</th>
 							<th scope="col">Preço</th>
-							<th scope="col">Criado em</th>
+							<th scope="col" class="d-none d-lg-block">Criado em</th>
 						</tr>
 					</thead>
 					<tbody></tbody>
@@ -97,10 +108,10 @@ $connection = connection();
 		</div>
 	</div>
 	<div class="card-footer text-muted bg-dark py-0">
-		<div class="offset-md-5">
-			<span class="ml-md-0 text-white">Alisson Chabaribery - 2019</span><br>
-			<span class="ml-md-4 text-white">Cadastro de Livros</span><br>
-			<span class="ml-md-5 text-white">ControlWare</span><br>
+		<div class="offset-5">
+			<span class="ml-0 text-white">Alisson Chabaribery - 2019</span><br>
+			<span class="ml-4 text-white">Cadastro de Livros</span><br>
+			<span class="ml-5 text-white">ControlWare</span><br>
 		</div>
 	</div>
 

@@ -70,7 +70,7 @@ function carregar(idLivro) {
 }
 
 function deletarLivro(){
-	if (!confirm("Tem certeza que dejesa dele o livro?")) {
+	if (!confirm("Tem certeza que dejesa deletar o livro?")) {
         return false;
     }
     $.ajax({
@@ -106,11 +106,11 @@ function grade() {
                         const horaCriacao = livro.horacriacao.substr(0, 8);
                         const precoLivro = parseFloat(livro.preco).toLocaleString('pt-Br', { minimumFractionDigits: 2 });
                         const tds = [
-                            `<td style='text-align: right'>${livro.idlivro}</td>`,
+                            `<td class="d-none d-lg-block" style='text-align: right'>${livro.idlivro}</td>`,
                             `<td>${livro.nome}</td>`,
                             `<td>${livro.biblioteca}</td>`,
                             `<td style='text-align: right'>R$${precoLivro}</td>`,
-                            `<td style='text-align: center'>${dataCriacao}-${horaCriacao}</td>`
+                            `<td class="d-none d-lg-block" style='text-align: center'>${dataCriacao}-${horaCriacao}</td>`
                         ].join("");
                         $("#grade tbody").append(`<tr onclick='carregar(${livro.idlivro})'>${tds}</tr>`);
                     }
