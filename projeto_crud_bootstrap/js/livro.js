@@ -21,7 +21,8 @@ $(document).ready(function() {
 		}else{
 			$("#div-cadastro, #div-grade").show();
 		}
-	}).trigger('resize')
+	}).trigger('resize');
+
 });
 
 $.ajaxSetup({ 
@@ -70,9 +71,9 @@ function carregar(idLivro) {
 }
 
 function deletarLivro(){
-	if (!confirm("Tem certeza que dejesa deletar o livro?")) {
+	/*if (!confirm("Tem certeza que dejesa deletar o livro?")) {
         return false;
-    }
+    }*/
     $.ajax({
         url: "ajax/deletarLivro.php", 
         data: { 
@@ -82,7 +83,7 @@ function deletarLivro(){
             switch (result.status) { 
                 case 0: 
                     cancelar();
-                    alert("Livro deletado com sucesso");
+					carregar();
                     break;
                 case 2: 
                     alert(result.message);
@@ -108,9 +109,9 @@ function grade() {
                         const tds = [
                             `<td class="d-none d-lg-block" style='text-align: right'>${livro.idlivro}</td>`,
                             `<td>${livro.nome}</td>`,
-                            `<td>${livro.biblioteca}</td>`,
+                            `<td class="td">${livro.biblioteca}</td>`,
                             `<td style='text-align: right'>R$${precoLivro}</td>`,
-                            `<td class="d-none d-lg-block" style='text-align: center'>${dataCriacao}-${horaCriacao}</td>`
+                            `<td class="d-none d-xl-block" style='text-align: center'>${dataCriacao}-${horaCriacao}</td>`
                         ].join("");
                         $("#grade tbody").append(`<tr style="cursor: pointer" onclick='carregar(${livro.idlivro})'>${tds}</tr>`);
                     }
@@ -157,6 +158,22 @@ function inserirNovo() {
 
 function limpar() { 
     $("input, select").val("");
+}
+
+function mostrarModalDeletar(){
+	$("#mensagemDeletar").modal("show");
+}
+
+function fecharModalDeletar(){
+	$("#mensagemDeletar").modal("hide");
+}
+
+function mostrarModalDeletado(){
+	$("#deletado").modal("show");
+}
+
+function fecharModalDeletado(){
+	$("#deletado").modal("hide");
 }
 
 $(function(){
@@ -210,4 +227,14 @@ function status(status){
 		}
 		
 	}
+}
+
+function trocarTelaCadastro(){
+	$("#div-grade").hide();
+	$("#div-cadastro").show();
+}
+
+function trocarTelaGrade(){
+	$("#div-cadastro").hide();
+	$("#div-grade").show();
 }

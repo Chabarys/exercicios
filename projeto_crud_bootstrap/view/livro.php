@@ -13,17 +13,17 @@ $connection = connection();
 </head>
 
 <body class="bg-light">
-	<div class="container-fluid no-gutters px-0">	
+	<div class="container-fluid no-gutters px-0">
 		<div class="navbar bg-dark d-none d-sm-block d-md-none d-block d-sm-none">
 			<ul class="nav">
 				<li class="nav-item col">
-					<a class="nav-link active text-white" href="#">
+					<a class="nav-link active text-white" onclick="trocarTelaCadastro()" href="#">
 						<i class="fas fa-book-open"></i>
 						<span>Cadastro de Livros</span>
 					</a>
 				</li>
 				<li class="nav-item col">
-					<a class="nav-link text-white" href="#">
+					<a class="nav-link text-white" onclick="trocarTelaGrade()" href="#">
 						<i class="fas fa-list-ol"></i>
 						<span>Lista de Livros</span>
 					</a>
@@ -34,22 +34,30 @@ $connection = connection();
 			<!-- CADASTRO -->
 			<div id="div-cadastro" class="col-12 col-md-6 border-right">
 				<div class="navbar bg-dark">
-					<button id="btnCriarNovo" type="button" class="btn btn-primary btn-sm" onclick="inserirNovo()">
-						<span>Criar Livro</span>
-						<i class="fas fa-plus-square"></i>
-					</button>
-					<button id="btnGravar" type="button" class="btn btn-success btn-sm" onclick="gravarLivro()">
-						<span>Gravar Livro</span>
-						<i class="fas fa-check"></i>
-					</button>
-					<button id="btnCancelar" type="button" class="btn btn-warning btn-sm" onclick="cancelar()">
-						<span>Cancelar</span>
-						<i class="fas fa-exclamation-triangle btn-sm"></i>
-					</button>
-					<button id="btnDeletar" type="button" class="btn btn-danger btn-sm" onclick="deletarLivro()">
-						<span>Deletar Livro</span>
-						<i class="fas fa-trash"></i>
-					</button>
+					<div class="col-6 col-sm-3 col-md-6 col-lg-3 p-1">
+						<button id="btnCriarNovo" type="button" class="btn btn-primary btn-sm btn-block" onclick="inserirNovo()">
+							<span>Criar Livro</span>
+							<i class="fas fa-plus-square"></i>
+						</button>
+					</div>
+					<div class="col-6 col-sm-3 col-md-6 col-lg-3 p-1">
+						<button id="btnGravar" type="button" class="btn btn-success btn-sm btn-block" onclick="gravarLivro()">
+							<span>Gravar Livro</span>
+							<i class="fas fa-check"></i>
+						</button>
+					</div>
+					<div class="col-6 col-sm-3 col-md-6 col-lg-3 p-1">
+						<button id="btnCancelar" type="button" class="btn btn-warning btn-sm btn-block" onclick="cancelar()">
+							<span>Cancelar</span>
+							<i class="fas fa-exclamation-triangle btn-sm"></i>
+						</button>
+					</div>
+					<div class="col-6 col-sm-3 col-md-6 col-lg-3 p-1">
+						<button id="btnDeletar" type="button" class="btn btn-danger btn-sm btn-block" onclick="mostrarModalDeletar()">
+							<span>Deletar Livro</span>
+							<i class="fas fa-trash"></i>
+						</button>
+					</div>
 				</div>
 				<div class="form-row px-4">
 					<div class="form-group col-4 col-lg-3">
@@ -83,11 +91,10 @@ $connection = connection();
 						<label for="precoLivro" class="col-form-label">Preço:</label>
 						<input id="precoLivro" type="text" class="form-control" placeholder="R$" min="1" max="10">
 					</div>
-
 				</div>
 			</div>
 			<!-- GRADE DE LIVROS -->
-			<div id="div-grade" class="col-6 no-gutters">
+			<div id="div-grade" class="col-12 col-md-6 no-gutters">
 				<table id="grade" class="table table-hover">
 					<caption class="mx-1">
 						<span>Lista de Livros</span>
@@ -95,33 +102,69 @@ $connection = connection();
 					</caption>
 					<thead class="table-dark table-bordered">
 						<tr>
-							<th scope="col" class="d-none d-lg-block">ID</th>
-							<th scope="col">Livro</th>
-							<th scope="col">Biblioteca</th>
-							<th scope="col">Preço</th>
-							<th scope="col" class="d-none d-lg-block">Criado em</th>
+							<th class="d-none d-lg-block">ID</th>
+							<th>Livro</th>
+							<th>Biblioteca</th>
+							<th>Preço</th>
+							<th class="d-none d-xl-block">Criado em</th>
 						</tr>
 					</thead>
 					<tbody></tbody>
 				</table>
 			</div>
 		</div>
-	</div>
-	<div class="card-footer text-muted bg-dark py-0">
-		<div class="offset-5">
-			<span class="ml-0 text-white">Alisson Chabaribery - 2019</span><br>
-			<span class="ml-4 text-white">Cadastro de Livros</span><br>
-			<span class="ml-5 text-white">ControlWare</span><br>
+		<!-- Rodapé com Registração -->
+		<div class="card-footer text-muted bg-dark py-0">
+			<div class="offset-5">
+				<span class="ml-0 text-white">Alisson Chabaribery - 2019</span><br>
+				<span class="ml-4 text-white">Cadastro de Livros</span><br>
+				<span class="ml-5 text-white">ControlWare</span><br>
+			</div>
+		</div>
+		<!-- Marcador do tamanho do página -->
+		<div id="sizes">
+			<div class="d-block d-sm-none">XS</div>
+			<div class="d-none d-sm-block d-md-none">SM</div>
+			<div class="d-none d-md-block d-lg-none">MD</div>
+			<div class="d-none d-lg-block d-xl-none">LG</div>
+			<div class="d-none d-xl-block">XL</div>
 		</div>
 	</div>
-
-	<div id="sizes">
-		<div class="d-block d-sm-none">XS</div>
-		<div class="d-none d-sm-block d-md-none">SM</div>
-		<div class="d-none d-md-block d-lg-none">MD</div>
-		<div class="d-none d-lg-block d-xl-none">LG</div>
-		<div class="d-none d-xl-block">XL</div>
+	<!-- Modal mensagem deletar livro -->
+	<div id="mensagemDeletar" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-dark">
+					<h5 class="modal-title text-danger">
+						Atenção
+						<i class="fas fa-exclamation-triangle"></i>
+					</h5>
+				</div>
+				<div class="modal-body">
+					<p class="text-black">Tem certeza que deseja <b>DELETAR</b> este livro?</p>
+				</div>
+				<div class="modal-footer bg-dark">
+					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="fecharModalDeletar()">Não</button>
+					<button type="button" class="btn btn-danger" onclick="deletarLivro(), fecharModalDeletar(), mostrarModalDeletado()">Deletar Livro</button>
+				</div>
+			</div>
+		</div>
 	</div>
+	<!-- Modal livro deletado com sucesso -->
+	<div id="deletado" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-dark">
+					<h5 class="modal-title text-white">Livro Deletado</h5>
+				</div>
+				<div class="modal-body">
+					<p>Livro Deletado com sucesso!</p>
+				</div>
+				<div class="modal-footer bg-dark">
+					<button type="button" class="btn btn-success" data-dismiss="modal" onclick="fecharModalDeletado()">Ok</button>
+				</div>
+			</div>
+		</div>
 </body>
 
 </html>
