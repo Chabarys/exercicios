@@ -18,14 +18,14 @@ $connection = connection();
 			<ul class="nav">
 				<li class="nav-item col">
 					<a class="nav-link active text-white" onclick="trocarTelaCadastro()" href="#">
-						<i class="fas fa-book-open"></i>
-						<span>Cadastro de Livros</span>
+						<i class="fas fa-book-open icon"></i>
+						<span class="icon">Cadastro de Livros</span>
 					</a>
 				</li>
 				<li class="nav-item col">
 					<a class="nav-link text-white" onclick="trocarTelaGrade()" href="#">
-						<i class="fas fa-list-ol"></i>
-						<span>Lista de Livros</span>
+						<i class="fas fa-list-ol icon"></i>
+						<span class="icon">Lista de Livros</span>
 					</a>
 				</li>
 			</ul>
@@ -145,26 +145,11 @@ $connection = connection();
 				</div>
 				<div class="modal-footer bg-dark">
 					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="fecharModalDeletar()">Não</button>
-					<button type="button" class="btn btn-danger" onclick="deletarLivro(), fecharModalDeletar(), mostrarModalDeletado()">Deletar Livro</button>
+					<button type="button" class="btn btn-danger" onclick="deletarLivro(), fecharModalDeletar()">Deletar Livro</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Modal livro deletado com sucesso -->
-	<div id="deletado" class="modal" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header bg-dark">
-					<h5 class="modal-title text-white">Livro Deletado</h5>
-				</div>
-				<div class="modal-body">
-					<p>Livro Deletado com sucesso!</p>
-				</div>
-				<div class="modal-footer bg-dark">
-					<button type="button" class="btn btn-success" data-dismiss="modal" onclick="fecharModalDeletado()">Ok</button>
-				</div>
-			</div>
-		</div>
 </body>
 
 </html>

@@ -89,6 +89,15 @@ function deletarLivro(){
                     alert(result.message);
                     break;
 			}
+			$.notify({
+				icon: "fas fa-trash-alt",
+				message: 'Livro deletado com sucesso!' 
+			},{
+				type: 'danger',
+				onShow: function(){
+					this.css({"width": "300"});
+				}
+			});
 			grade();
         }
 	});
@@ -104,14 +113,14 @@ function grade() {
                     $("#grade tbody").html(""); 
                     for (const livro of result.data) {
                         const dataCriacao = livro.datacriacao.split("-").reverse().join("/");
-                        const horaCriacao = livro.horacriacao.substr(0, 8);
+                        const horaCriacao = livro.horacriacao.substr(0, 5);
                         const precoLivro = parseFloat(livro.preco).toLocaleString('pt-Br', { minimumFractionDigits: 2 });
                         const tds = [
                             `<td class="d-none d-lg-block" style='text-align: right'>${livro.idlivro}</td>`,
                             `<td>${livro.nome}</td>`,
                             `<td class="td">${livro.biblioteca}</td>`,
                             `<td style='text-align: right'>R$${precoLivro}</td>`,
-                            `<td class="d-none d-xl-block" style='text-align: center'>${dataCriacao}-${horaCriacao}</td>`
+                            `<td class="d-none d-xl-block" style='text-align: center'>${dataCriacao} - ${horaCriacao}</td>`
                         ].join("");
                         $("#grade tbody").append(`<tr style="cursor: pointer" onclick='carregar(${livro.idlivro})'>${tds}</tr>`);
                     }
@@ -144,7 +153,16 @@ function gravarLivro() {
                 case 2: 
                     alert(result.message);
                     break;
-            }
+			}
+			$.notify({
+				icon: "fas fa-check-circle",
+				message: 'Livro cadastrado com sucesso!' 
+			},{
+				type: 'success',
+				onShow: function(){
+					this.css({"width": "300"});
+				}
+			});
         }
 	});
 	grade();
@@ -167,15 +185,6 @@ function mostrarModalDeletar(){
 function fecharModalDeletar(){
 	$("#mensagemDeletar").modal("hide");
 }
-
-function mostrarModalDeletado(){
-	$("#deletado").modal("show");
-}
-
-function fecharModalDeletado(){
-	$("#deletado").modal("hide");
-}
-
 $(function(){
 	$("#precoLivro").maskMoney({
 	   prefix: 'R$ ',
@@ -238,3 +247,10 @@ function trocarTelaGrade(){
 	$("#div-cadastro").hide();
 	$("#div-grade").show();
 }
+
+$.notify({
+	icon: "img/growl_64x.png",
+	message: " I am using an image."
+},{
+	icon_type: 'image'
+});
