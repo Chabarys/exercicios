@@ -16,16 +16,16 @@ $connection = connection();
 	<div class="container-fluid no-gutters px-0">
 		<div class="navbar bg-dark d-none d-sm-block d-md-none d-block d-sm-none">
 			<ul class="nav">
-				<li class="nav-item col">
+				<li id="cadastro" class="nav-item col">
 					<a class="nav-link active text-white" onclick="trocarTelaCadastro()" href="#">
-						<i class="fas fa-book-open icon"></i>
-						<span class="icon">Cadastro de Livros</span>
+						<i class="fas fa-book-open"></i>
+						<span>Cadastro de Livros</span>
 					</a>
 				</li>
-				<li class="nav-item col">
+				<li id="lista" class="nav-item col">
 					<a class="nav-link text-white" onclick="trocarTelaGrade()" href="#">
-						<i class="fas fa-list-ol icon"></i>
-						<span class="icon">Lista de Livros</span>
+						<i class="fas fa-list-ol"></i>
+						<span>Lista de Livros</span>
 					</a>
 				</li>
 			</ul>
@@ -60,9 +60,10 @@ $connection = connection();
 					</div>
 				</div>
 				<div class="form-row px-4">
-					<div class="form-group col-4 col-lg-3">
+					<div class="form-group col-4 col-lg-2">
 						<label for="idLivro" class="col-form-label">ID:</label>
-						<input id="idLivro" type="number" class="form-control">
+						<i id="pesquisar" class="fas fa-search"></i>
+						<input id="idLivro" type="text" class="form-control" inputmode="numeric">
 					</div>
 					<div class="form-group col-6 offset-2 col-lg-4 offset-lg-5">
 						<label for="criadoEm" class="col-form-label">Criado em:</label>
@@ -95,22 +96,24 @@ $connection = connection();
 			</div>
 			<!-- GRADE DE LIVROS -->
 			<div id="div-grade" class="col-12 col-md-6 no-gutters">
-				<table id="grade" class="table table-hover">
-					<caption class="mx-1">
-						<span>Lista de Livros</span>
-						<i class="fas fa-book"></i>
-					</caption>
-					<thead class="table-dark table-bordered">
-						<tr>
-							<th class="d-none d-lg-block">ID</th>
-							<th>Livro</th>
-							<th>Biblioteca</th>
-							<th>Preço</th>
-							<th class="d-none d-xl-block">Criado em</th>
-						</tr>
-					</thead>
-					<tbody></tbody>
-				</table>
+				<div>
+					<table id="grade" class="table table-hover">
+						<caption class="mx-1">
+							<span>Lista de Livros</span>
+							<i class="fas fa-book"></i>
+						</caption>
+						<thead class="table-dark table-bordered">
+							<tr>
+								<th class="d-none d-lg-block">ID</th>
+								<th>Livro</th>
+								<th>Biblioteca</th>
+								<th>Preço</th>
+								<th class="d-none d-xl-block">Criado em</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 		<!-- Rodapé com Registração -->

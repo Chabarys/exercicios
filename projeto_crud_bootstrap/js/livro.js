@@ -1,22 +1,28 @@
 $(document).ready(function() { 
+	
 	status(0);
+	
+	$("#cadastro").css("background-color", "#6c757d");
+
+	$("#idLivro").focus();
+
+	$("#pesquisar").click(function(){
+		carregar($("#idLivro").val());
+	});
+
 	$("#idLivro").keypress(function(event) {
         if (event.keyCode == 13) {
 			carregar($(this).val());
         }
 	});
-/*
+
 	$("#div-grade > div").unbind("scroll").bind("scroll", function(){
 		$(this).find("thead").css("transform", `translateY(${$(this).scrollTop()}px)`);
-	});*/
+	});
 
 	grade();
 
-	$("#idLivro").focus();
-
 	$(window).unbind('resize').bind('resize', () => {
-		//$('#div-cadastro').height(window.innerHeight - parseInt($("body").css("padding-bottom")));
-
 		let largura_sm = 767;
 		if(window.innerWidth <= largura_sm){
 			if($("#div-cadastro").is(":visible") && $("#div-grade").is(":visible")){
@@ -32,7 +38,15 @@ $(document).ready(function() {
 		allowNegative: true,
 		thousands: '.',
 		decimal: ','
-	 });
+	});
+
+	$("#lista").click(function(){
+		status(3);
+	});
+
+	$("#cadastro").click(function(){
+		status(4);
+	});
 });
 
 $.ajaxSetup({ 
@@ -236,8 +250,15 @@ function status(status){
 				$("#idBiblioteca").attr("disabled", false);
 				$("#precoLivro").attr("disabled", false);
 			break;
+			case 3:
+				$("#cadastro").css("background-color", "#343a40");
+				$("#lista").css("background-color", "#6c757d");
+			break;
+			case 4:
+				$("#cadastro").css("background-color", "#6c757d");
+				$("#lista").css("background-color", "#343a40");
+			break;
 		}
-		
 	}
 }
 
@@ -251,9 +272,3 @@ function trocarTelaGrade(){
 	$("#div-grade").show();
 }
 
-$.notify({
-	icon: "img/growl_64x.png",
-	message: " I am using an image."
-},{
-	icon_type: 'image'
-});
