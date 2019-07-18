@@ -5,13 +5,17 @@ $(document).ready(function() {
 			carregar($(this).val());
         }
 	});
+/*
+	$("#div-grade > div").unbind("scroll").bind("scroll", function(){
+		$(this).find("thead").css("transform", `translateY(${$(this).scrollTop()}px)`);
+	});*/
 
 	grade();
 
 	$("#idLivro").focus();
 
 	$(window).unbind('resize').bind('resize', () => {
-		$('#div-cadastro').height(window.innerHeight - parseInt($("body").css("padding-bottom")));
+		//$('#div-cadastro').height(window.innerHeight - parseInt($("body").css("padding-bottom")));
 
 		let largura_sm = 767;
 		if(window.innerWidth <= largura_sm){
@@ -23,6 +27,12 @@ $(document).ready(function() {
 		}
 	}).trigger('resize');
 
+	$("#precoLivro").maskMoney({
+		prefix: 'R$ ',
+		allowNegative: true,
+		thousands: '.',
+		decimal: ','
+	 });
 });
 
 $.ajaxSetup({ 
@@ -113,7 +123,7 @@ function grade() {
                     $("#grade tbody").html(""); 
                     for (const livro of result.data) {
                         const dataCriacao = livro.datacriacao.split("-").reverse().join("/");
-                        const horaCriacao = livro.horacriacao.substr(0, 5);
+                        const horaCriacao = livro.horacriacao.substr(0, 8);
                         const precoLivro = parseFloat(livro.preco).toLocaleString('pt-Br', { minimumFractionDigits: 2 });
                         const tds = [
                             `<td class="d-none d-lg-block" style='text-align: right'>${livro.idlivro}</td>`,
@@ -185,14 +195,7 @@ function mostrarModalDeletar(){
 function fecharModalDeletar(){
 	$("#mensagemDeletar").modal("hide");
 }
-$(function(){
-	$("#precoLivro").maskMoney({
-	   prefix: 'R$ ',
-	   allowNegative: true,
-	   thousands: '.',
-	   decimal: ','
-	});
- });
+
 var _status = null;
 function status(status){
 	if (status === undefined) {

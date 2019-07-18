@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../../scss/view/livro.scss"],"names":[],"mappings":"AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA","file":"livro.css"}
+{"version":3,"sourceRoot":"","sources":["../../scss/view/livro.scss","../../../lib/bootstrap-4.3.1/scss/_variables.scss"],"names":[],"mappings":"AAEA;EACC;IACC;IACA,kBCKS;IDJT;IACA;IACA;IACA;IACA","file":"livro.css"}

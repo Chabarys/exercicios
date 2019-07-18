@@ -1,11 +1,13 @@
-/*
-#grade {
-	tr > * {
-		&:nth-child(1) { width: 15%; }
-		&:nth-child(2) { width: 35%; }
-		&:nth-child(3) { width: 20%; }
-		&:nth-child(4) { width: 15%; }
-		&:nth-child(5) { width: 15%; }
+@import "../def/variables.scss";
+
+@media (min-width: 768px) {
+	body::after {
+		content: "";
+		background-color: $border-color;
+		bottom: 0;
+		left: 50%;
+		position: fixed;
+		top: 0;
+		width: 1px;
 	}
 }
-*/

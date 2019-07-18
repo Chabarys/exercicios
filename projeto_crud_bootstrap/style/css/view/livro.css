@@ -1,13 +1,13 @@
-/*
-#grade {
-	tr > * {
-		&:nth-child(1) { width: 15%; }
-		&:nth-child(2) { width: 35%; }
-		&:nth-child(3) { width: 20%; }
-		&:nth-child(4) { width: 15%; }
-		&:nth-child(5) { width: 15%; }
-	}
+@media (min-width: 768px) {
+  body::after {
+    content: "";
+    background-color: #dee2e6;
+    bottom: 0;
+    left: 50%;
+    position: fixed;
+    top: 0;
+    width: 1px;
+  }
 }
-*/
 
 /*# sourceMappingURL=livro.css.map */

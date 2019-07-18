@@ -32,7 +32,7 @@ $connection = connection();
 		</div>
 		<div class="row no-gutters">
 			<!-- CADASTRO -->
-			<div id="div-cadastro" class="col-12 col-md-6 border-right">
+			<div id="div-cadastro" class="col-12 col-md-6">
 				<div class="navbar bg-dark">
 					<div class="col-6 col-sm-3 col-md-6 col-lg-3 p-1">
 						<button id="btnCriarNovo" type="button" class="btn btn-primary btn-sm btn-block" onclick="inserirNovo()">
@@ -71,7 +71,7 @@ $connection = connection();
 					<div class="w-100"></div>
 					<div class="form-group col-lg-6 col-sm-12">
 						<label for="nomeLivro" class="col-form-label">Nome do Livro:</label>
-						<input id="nomeLivro" type="text" class="form-control" placeholder="Informe o Nome do Livro">
+						<input id="nomeLivro" type="text" class="form-control" placeholder="Informe o Nome do Livro" autocomplete="off">
 					</div>
 					<div class="w-100"></div>
 					<div class="form-group col-md-6">
@@ -89,7 +89,7 @@ $connection = connection();
 					</div>
 					<div class="form-group col-md-5 offset-md-1">
 						<label for="precoLivro" class="col-form-label">Preço:</label>
-						<input id="precoLivro" type="text" class="form-control" placeholder="R$" min="1" max="10">
+						<input id="precoLivro" type="text" class="form-control" placeholder="R$" inputmode="numeric" autocomplete="off">
 					</div>
 				</div>
 			</div>
