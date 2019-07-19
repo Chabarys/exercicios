@@ -118,10 +118,10 @@ $connection = connection();
 		</div>
 		<!-- Rodapé com Registração -->
 		<div class="card-footer text-muted bg-dark py-0">
-			<div class="offset-5">
-				<span class="ml-0 text-white">Alisson Chabaribery - 2019</span><br>
-				<span class="ml-4 text-white">Cadastro de Livros</span><br>
-				<span class="ml-5 text-white">ControlWare</span><br>
+			<div class="offset-3 offset-sm-5">
+				<span class="ml-2 ml-sm-0 text-white">Alisson Chabaribery - 2019</span><br>
+				<span class="ml-4 ml-sm-4 text-white">Cadastro de Livros</span><br>
+				<span class="ml-5 ml-sm-5 text-white">ControlWare</span><br>
 			</div>
 		</div>
 		<!-- Marcador do tamanho do página -->

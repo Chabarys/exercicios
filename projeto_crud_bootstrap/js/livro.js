@@ -15,11 +15,11 @@ $(document).ready(function() {
 			carregar($(this).val());
         }
 	});
-
-	$("#div-grade > div").unbind("scroll").bind("scroll", function(){
+/*
+	$("#div-grade").unbind("scroll").bind("scroll", function(){
 		$(this).find("thead").css("transform", `translateY(${$(this).scrollTop()}px)`);
 	});
-
+*/
 	grade();
 
 	$(window).unbind('resize').bind('resize', () => {
