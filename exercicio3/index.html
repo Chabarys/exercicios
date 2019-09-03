@@ -2,48 +2,11 @@
 <html>
     <head>
         
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+		<script type="text/javascript" src="javascript.js"></script>
         <meta charset="UTF-8">
         <title>Exercício 3</title>
         <link rel="stylesheet" href="css.css">
-        <script>
-            function enviar(){
-
-                $.ajax({
-                    url: "gravar.php",
-                    data: {
-                        valor1: $("#valor1").val(),
-                        valor2: $("#valor2").val(),
-                        valor3: $("#valor3").val()     
-                    },
-                    method:"GET",
-                    success: function(){                       
-                        mostrar();
-                    }
-                });
-            }
-
-            function mostrar(){
-                $.ajax({
-                    url: "exibir.php",
-                    data: {
-                        tipo: $("[name='maiormenor']:checked").val()
-                    },
-                    success: function(result){
-                        $("#resultado").html(result);
-                    }
-                })
-            }
-
-            function limpar(){
-                $.ajax({
-                    url: "limpar.php",                    
-                    success: function(){
-                        mostrar();
-                    },
-                });
-            };
-        </script>
     </head>
     <body>
         <section class="primeira">  
@@ -54,21 +17,21 @@
                 <input id="valor1" class="campo-unico" type="number" name="box1">
                 <input id="valor2" class="campo-pequeno" type="number" name="box2">
                 <input id="valor3" class="campo-pequeno" type="number" name="box3"> 
-                <input id="campo-enviar" type="button" onclick="enviar()" value="Enviar">
+                <input id="campo-enviar" type="button" onclick="" value="Enviar">
                 
                 <div class="div2">
                     
                     <label for='radio-maior'><p class="texto-exibir">Exibir os <b>maiores</b> valores.</p></label>
-                    <input id="radio-maior" class="exibir" type="radio" name="maiormenor" value="maior" onclick="mostrar()" checked>
+                    <input id="radio-maior" class="exibir" type="radio" name="maiormenor" value="maior" onclick="" checked>
                     <label for='radio-menor'><p class="texto-exibir">Exibir os <b>menores</b> valores.</p></label>
-                    <input id="radio-menor" class="exibir" type="radio" name="maiormenor" value="menor" onclick="mostrar()">
+                    <input id="radio-menor" class="exibir" type="radio" name="maiormenor" value="menor" onclick="">
                 </div>
                 </div>
                 <div class="div2">
                     <label  class="paragrafo">Resultado:</label>
                     <div id="resultado" name="resultado"></div>
                 </div>  </br></br></br> 
-                <input id="reiniciar" class="novo" onclick="limpar()" type="button" name="limpar" value="Iniciar Novo">
+                <input id="reiniciar" class="novo" onclick="" type="button" name="limpar" value="Iniciar Novo">
             </div>
         </section>
         
