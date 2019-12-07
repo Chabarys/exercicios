@@ -14,9 +14,9 @@ $connection = connection();
 $result = $connection->query("UPDATE livro SET nome = '{$nomeLivro}', idbiblioteca = '{$idBiblioteca}', preco = '{$precoLivro}' WHERE idlivro = {$idLivro}");
 
 if ($result) {
-    json_success(array(
+    json_success([
         "idlivro" => $idLivro
-    ));
+    ]);
 } else {
     $erro = $connection->errorInfo();
     json_error($erro[2]);

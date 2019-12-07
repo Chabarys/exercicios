@@ -1,274 +1,235 @@
-$(document).ready(function() { 
+$(document).ready(()  => { 
 	
-	status(0);
+	status(0)
 	
-	$("#cadastro").css("background-color", "#6c757d");
+	$('#cadastro').css('background-color', '#6c757d')
 
-	$("#idLivro").focus();
+	$('#idLivro').focus()
 
-	$("#pesquisar").click(function(){
-		carregar($("#idLivro").val());
-	});
+	$('#pesquisar').click(() => carregar($('#idLivro').val()))
 
-	$("#idLivro").keypress(function(event) {
-        if (event.keyCode == 13) {
-			carregar($(this).val());
-        }
-	});
-/*
-	$("#div-grade").unbind("scroll").bind("scroll", function(){
-		$(this).find("thead").css("transform", `translateY(${$(this).scrollTop()}px)`);
-	});
-*/
-	grade();
+	$('#idLivro').keypress(event (event.keyCode == 13 ? carregar($(this).val()) : null))
+
+	grade()
 
 	$(window).unbind('resize').bind('resize', () => {
-		let largura_sm = 767;
+		let largura_sm = 767
 		if(window.innerWidth <= largura_sm){
-			if($("#div-cadastro").is(":visible") && $("#div-grade").is(":visible")){
-				$("#div-grade").hide();
+			if ($('#div-cadastro').is(':visible') && $('#div-grade').is(':visible')) {
+				$('#div-grade').hide()
 			}
-		}else{
-			$("#div-cadastro, #div-grade").show();
+		} else {
+			$('#div-cadastro, #div-grade').show()
 		}
-	}).trigger('resize');
+	}).trigger('resize')
 
-	$("#precoLivro").maskMoney({
+	$('#precoLivro').maskMoney({
 		prefix: 'R$ ',
 		allowNegative: true,
 		thousands: '.',
 		decimal: ','
-	});
+	})
 
-	$("#lista").click(function(){
-		status(3);
-	});
+	$('#lista').click(() => status(3))
 
-	$("#cadastro").click(function(){
-		status(4);
-	});
-});
+	$('#cadastro').click(() => status(4))
+})
 
 $.ajaxSetup({ 
 	dataType: 'json',
-	error: function(){ 
-		console.log("Houve uma falha de conexão.\n	Verifique sua internet.");
-	}
-});
+	error: () => console.log('Houve uma falha de conexão.\n	Verifique sua internet.')
+})
 
-function cancelar() {
-    status(0);
-    limpar();
-	$("#idLivro").focus();
+const cancelar = () => {
+    status(0)
+    limpar()
+	$('#idLivro').focus()
 }
 
-var _carregar_ajax = null;
-function carregar(idLivro) {
-	if(_carregar_ajax !== null){
-		return false; 
-	}
+let _carregar_ajax = null
+const carregar = idLivro => {
+	if (_carregar_ajax !== null) return false
     _carregar_ajax = $.ajax({
-        url: "ajax/carregar.php", 
-        data: {
-            idLivro: idLivro
-		},
-		complete: function(){
-			_carregar_ajax = null;
-		},
-        success: function(result) {
+        url: 'ajax/carregar.php', 
+        data: { idLivro	},
+		complete: () => _carregar_ajax = null,
+        success: result => {
             switch (result.status) {
                 case 0:
-                    status(2);
+                    status(2)
                     for (let id in result.data) {
-                        let valor = result.data[id];
-                        $("#" + id).val(valor);
+                        let valor = result.data[id]
+                        $('#' + id).val(valor)
                     }
-                    break;
-                case 2:
-                    alert(result.message);
-                    break;
+                    break
+                case 2: alert(result.message); break
             }
         }
-	});
-	grade();
+	})
+	grade()
 
 }
 
-function deletarLivro(){
-	/*if (!confirm("Tem certeza que dejesa deletar o livro?")) {
-        return false;
-    }*/
+const deletarLivro = () => {
     $.ajax({
-        url: "ajax/deletarLivro.php", 
+        url: 'ajax/deletarLivro.php', 
         data: { 
-            idLivro: $("#idLivro").val() 
+            idLivro: $('#idLivro').val() 
         },
-        success: function(result) { 
+        success: result => { 
             switch (result.status) { 
                 case 0: 
-                    cancelar();
-					carregar();
-                    break;
-                case 2: 
-                    alert(result.message);
-                    break;
+                    cancelar()
+					carregar()
+                    break
+                case 2: alert(result.message); break
 			}
 			$.notify({
-				icon: "fas fa-trash-alt",
+				icon: 'fas fa-trash-alt',
 				message: 'Livro deletado com sucesso!' 
 			},{
 				type: 'danger',
-				onShow: function(){
-					this.css({"width": "300"});
+				onShow: function () {
+					this.css({'width': '300'})
 				}
-			});
-			grade();
+			})
+			grade()
         }
-	});
+	})
 	
 }
 
-function grade() { 
+const grade = () => { 
     $.ajax({
-        url: "ajax/grade.php", 
-        success: function(result) {
+        url: 'ajax/grade.php', 
+        success: result => {
             switch (result.status) {
                 case 0:
-                    $("#grade tbody").html(""); 
+                    $('#grade tbody').html('') 
                     for (const livro of result.data) {
-                        const dataCriacao = livro.datacriacao.split("-").reverse().join("/");
-                        const horaCriacao = livro.horacriacao.substr(0, 8);
-                        const precoLivro = parseFloat(livro.preco).toLocaleString('pt-Br', { minimumFractionDigits: 2 });
+                        const dataCriacao = livro.datacriacao.split('-').reverse().join('/')
+                        const horaCriacao = livro.horacriacao.substr(0, 8)
+                        const precoLivro = parseFloat(livro.preco).toLocaleString('pt-Br', { minimumFractionDigits: 2 })
                         const tds = [
-                            `<td class="d-none d-lg-block" style='text-align: right'>${livro.idlivro}</td>`,
+                            `<td class='d-none d-lg-block' style='text-align: right'>${livro.idlivro}</td>`,
                             `<td>${livro.nome}</td>`,
-                            `<td class="td">${livro.biblioteca}</td>`,
+                            `<td class='td'>${livro.biblioteca}</td>`,
                             `<td style='text-align: right'>R$${precoLivro}</td>`,
-                            `<td class="d-none d-xl-block" style='text-align: center'>${dataCriacao} - ${horaCriacao}</td>`
-                        ].join("");
-                        $("#grade tbody").append(`<tr style="cursor: pointer" onclick='carregar(${livro.idlivro})'>${tds}</tr>`);
+                            `<td class='d-none d-xl-block' style='text-align: center'>${dataCriacao} - ${horaCriacao}</td>`
+                        ].join('')
+                        $('#grade tbody').append(`<tr style='cursor: pointer' onclick='carregar(${livro.idlivro})'>${tds}</tr>`)
                     }
-                    break;
+                    break
                 case 2:
-                    alert(result.message);
-                    break;
+                    alert(result.message)
+                    break
             }
         }
-    });
+    })
 }
 
-function gravarLivro() {
-	let arquivo = (status() === 1 ? 'inserirNovo.php' : 'alterar.php');
+const gravarLivro  = () => {
+	let arquivo = (status() === 1 ? 'inserirNovo.php' : 'alterar.php')
 	
-	$("#idLivro").focus();
+	$('#idLivro').focus()
 	$.ajax({
-        url: "ajax/" + arquivo, 
+        url: `ajax/${arquivo}`, 
         data: {
             idLivro: $('#idLivro').val(), 
             nomeLivro: $('#nomeLivro').val(),
             idBiblioteca: $('#idBiblioteca').val(),
-            precoLivro: $('#precoLivro').val().replace("R$ ", "")
+            precoLivro: $('#precoLivro').val().replace('R$ ', '')
         },
-        success: function(result) { 
+        success: result => { 
             switch (result.status) { 
-                case 0: 
-                    carregar(result.data.idLivro);
-                    break;
-                case 2: 
-                    alert(result.message);
-                    break;
+                case 0: carregar(result.data.idLivro); break
+                case 2: alert(result.message); break
 			}
 			$.notify({
-				icon: "fas fa-check-circle",
+				icon: 'fas fa-check-circle',
 				message: 'Livro cadastrado com sucesso!' 
 			},{
 				type: 'success',
 				onShow: function(){
-					this.css({"width": "300"});
+					this.css({'width': '300'})
 				}
-			});
+			})
         }
-	});
-	grade();
+	})
+	grade()
 }
 
-function inserirNovo() { 
-    status(1); 
-    limpar();
-    $("#nomeLivro").focus(); 
+const inserirNovo = () => { 
+    status(1) 
+    limpar()
+    $('#nomeLivro').focus() 
 }
 
-function limpar() { 
-    $("input, select").val("");
-}
+const limpar = () => $('input, select').val('')
 
-function mostrarModalDeletar(){
-	$("#mensagemDeletar").modal("show");
-}
+const mostrarModalDeletar = () => $('#mensagemDeletar').modal('show')
 
-function fecharModalDeletar(){
-	$("#mensagemDeletar").modal("hide");
-}
+const fecharModalDeletar = () => $('#mensagemDeletar').modal('hide')
 
-var _status = null;
-function status(status){
+var _status = null
+const status = status => {
 	if (status === undefined) {
-		return _status;
+		return _status
 	} else {
-		_status = status;
+		_status = status
 		switch (status) {
 			case 0:
-				$("#btnCriarNovo").attr("disabled", false);
-				$("#btnGravar").attr("disabled", true);
-				$("#btnCancelar").attr("disabled", true);
-				$("#btnDeletar").attr("disabled", true);
-				$("#idLivro").attr("disabled", false);
-				$("#criadoEm").attr("disabled", true);
-				$("#nomeLivro").attr("disabled", true);
-				$("#idBiblioteca").attr("disabled", true);
-				$("#precoLivro").attr("disabled", true);
-			break;
+				$('#btnCriarNovo').attr('disabled', false)
+				$('#btnGravar').attr('disabled', true)
+				$('#btnCancelar').attr('disabled', true)
+				$('#btnDeletar').attr('disabled', true)
+				$('#idLivro').attr('disabled', false)
+				$('#criadoEm').attr('disabled', true)
+				$('#nomeLivro').attr('disabled', true)
+				$('#idBiblioteca').attr('disabled', true)
+				$('#precoLivro').attr('disabled', true)
+			break
 			case 1:
-				$("#btnCriarNovo").attr("disabled", true);
-				$("#btnGravar").attr("disabled", false);
-				$("#btnCancelar").attr("disabled", false);
-				$("#btnDeletar").attr("disabled", true);
-				$("#idLivro").attr("disabled", true);
-				$("#criadoEm").attr("disabled", true);
-				$("#nomeLivro").attr("disabled", false);
-				$("#idBiblioteca").attr("disabled", false);
-				$("#precoLivro").attr("disabled", false);
-			break;
+				$('#btnCriarNovo').attr('disabled', true)
+				$('#btnGravar').attr('disabled', false)
+				$('#btnCancelar').attr('disabled', false)
+				$('#btnDeletar').attr('disabled', true)
+				$('#idLivro').attr('disabled', true)
+				$('#criadoEm').attr('disabled', true)
+				$('#nomeLivro').attr('disabled', false)
+				$('#idBiblioteca').attr('disabled', false)
+				$('#precoLivro').attr('disabled', false)
+			break
 			case 2:
-				$("#btnCriarNovo").attr("disabled", true);
-				$("#btnGravar").attr("disabled", false);
-				$("#btnCancelar").attr("disabled", false);
-				$("#btnDeletar").attr("disabled", false);
-				$("#idLivro").attr("disabled", true);
-				$("#criadoEm").attr("disabled", true);
-				$("#nomeLivro").attr("disabled", false);
-				$("#idBiblioteca").attr("disabled", false);
-				$("#precoLivro").attr("disabled", false);
-			break;
+				$('#btnCriarNovo').attr('disabled', true)
+				$('#btnGravar').attr('disabled', false)
+				$('#btnCancelar').attr('disabled', false)
+				$('#btnDeletar').attr('disabled', false)
+				$('#idLivro').attr('disabled', true)
+				$('#criadoEm').attr('disabled', true)
+				$('#nomeLivro').attr('disabled', false)
+				$('#idBiblioteca').attr('disabled', false)
+				$('#precoLivro').attr('disabled', false)
+			break
 			case 3:
-				$("#cadastro").css("background-color", "#343a40");
-				$("#lista").css("background-color", "#6c757d");
-			break;
+				$('#cadastro').css('background-color', '#343a40')
+				$('#lista').css('background-color', '#6c757d')
+			break
 			case 4:
-				$("#cadastro").css("background-color", "#6c757d");
-				$("#lista").css("background-color", "#343a40");
-			break;
+				$('#cadastro').css('background-color', '#6c757d')
+				$('#lista').css('background-color', '#343a40')
+			break
 		}
 	}
 }
 
-function trocarTelaCadastro(){
-	$("#div-grade").hide();
-	$("#div-cadastro").show();
+const trocarTelaCadastro = () => {
+	$('#div-grade').hide()
+	$('#div-cadastro').show()
 }
 
-function trocarTelaGrade(){
-	$("#div-cadastro").hide();
-	$("#div-grade").show();
+const trocarTelaGrade = () => {
+	$('#div-cadastro').hide()
+	$('#div-grade').show()
 }
 
