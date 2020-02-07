@@ -104,7 +104,6 @@ img {
     height: 380px;
     width: 100%;
     background: url("../img/bg.jpg") no-repeat center;
-    background-size: cover;
     padding-top: 100px;
     text-align: center;
 }
