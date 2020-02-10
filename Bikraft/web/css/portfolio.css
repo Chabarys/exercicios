@@ -3,6 +3,11 @@
     background-size: cover;
 }
 
+.introducao_interna p {
+    color: #fff;
+    text-align: center;
+}
+
 .quote_cliente {
     padding: 60px 0;
     max-width: 460px;

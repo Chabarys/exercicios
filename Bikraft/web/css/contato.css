@@ -3,6 +3,11 @@
     background-size: cover;
 }
 
+.introducao_interna p {
+    color: #fff;
+    text-align: center;
+}
+
 .contato {
     padding: 40px 0;
 }
