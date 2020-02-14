@@ -236,7 +236,7 @@ img {
     margin-bottom: 20px;
 }
 
-/* PORTIFÓLIO */
+/* PORTFÓLIO */
 
 .portifolio {
     width: 100%;
@@ -275,7 +275,7 @@ img {
     width: 634px;
     height: 83px;
     display: block;
-    background:  url("../img/linhas.svg") no-repeat center;
+    background: url("../img/linhas.svg") no-repeat center;
     position: absolute;
     top: 229px;
     right: 162px;
