@@ -55,8 +55,8 @@ p {
 
 img {
     display: block;
+    max-width: 100%;
 }
-
 
 /* HEADER */
 
@@ -87,6 +87,7 @@ img {
     font-size: 14px;
     line-height: 20px;
     padding: 10px 0;
+    text-align: center;
 }
 
 .header_menu ul li a:hover {
