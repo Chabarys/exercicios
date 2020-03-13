@@ -10,8 +10,8 @@
 		<link href="css/login.css" rel="stylesheet">
 	</head>
 	<body>
-		<h1>TESTE</h1>
-		<p>Não tem nada aqui</p>
+		<h1>Sucesso</h1>
+		<p>Login realizado com sucesso</p>
 		<button class="btn btn-lg btn-primary btn-block btn-logout" onclick="window.location.href='../logout.php'">Sair</button>
 	</body>
 	<script type="text/javascript" src="../js/login.js"></script>
