@@ -1,14 +1,9 @@
 $(document).ready(()  => { 
-	
 	status(0)
-	
 	$('#cadastro').css('background-color', '#6c757d')
-
 	$('#idLivro').focus()
-
 	$('#pesquisar').click(() => carregar($('#idLivro').val()))
-
-	$('#idLivro').keypress(event (event.keyCode == 13 ? carregar($(this).val()) : null))
+	$('#idLivro').keypress(event => event.key == 'Enter' ? carregar($(this).val()) : null)
 
 	grade()
 
@@ -29,16 +24,12 @@ $(document).ready(()  => {
 		thousands: '.',
 		decimal: ','
 	})
-
+	
 	$('#lista').click(() => status(3))
-
 	$('#cadastro').click(() => status(4))
 })
 
-$.ajaxSetup({ 
-	dataType: 'json',
-	error: () => console.log('Houve uma falha de conexão.\n	Verifique sua internet.')
-})
+$.ajaxSetup({ dataType: 'json' })
 
 const cancelar = () => {
     status(0)
@@ -50,6 +41,7 @@ let _carregar_ajax = null
 const carregar = idLivro => {
 	if (_carregar_ajax !== null) return false
     _carregar_ajax = $.ajax({
+		method: 'POST',
         url: 'ajax/carregar.php', 
         data: { idLivro	},
 		complete: () => _carregar_ajax = null,
@@ -67,20 +59,18 @@ const carregar = idLivro => {
         }
 	})
 	grade()
-
 }
 
 const deletarLivro = () => {
     $.ajax({
         url: 'ajax/deletarLivro.php', 
-        data: { 
-            idLivro: $('#idLivro').val() 
-        },
+        data: { idLivro: $('#idLivro').val() },
         success: result => { 
             switch (result.status) { 
                 case 0: 
                     cancelar()
 					carregar()
+					grade()
                     break
                 case 2: alert(result.message); break
 			}
@@ -92,11 +82,9 @@ const deletarLivro = () => {
 				onShow: function () {
 					this.css({'width': '300'})
 				}
-			})
-			grade()
+			})		
         }
 	})
-	
 }
 
 const grade = () => { 
@@ -142,21 +130,23 @@ const gravarLivro  = () => {
         },
         success: result => { 
             switch (result.status) { 
-                case 0: carregar(result.data.idLivro); break
+				case 0: 
+					carregar(result.data.idLivro); 
+					grade()
+					$.notify({
+						icon: 'fas fa-check-circle',
+						message: 'Livro cadastrado com sucesso!' 
+					},{
+						type: 'success',
+						onShow: function(){
+							this.css({'width': '300'})
+						}
+					})
+					break
                 case 2: alert(result.message); break
 			}
-			$.notify({
-				icon: 'fas fa-check-circle',
-				message: 'Livro cadastrado com sucesso!' 
-			},{
-				type: 'success',
-				onShow: function(){
-					this.css({'width': '300'})
-				}
-			})
         }
 	})
-	grade()
 }
 
 const inserirNovo = () => { 
@@ -171,7 +161,7 @@ const mostrarModalDeletar = () => $('#mensagemDeletar').modal('show')
 
 const fecharModalDeletar = () => $('#mensagemDeletar').modal('hide')
 
-var _status = null
+let _status = null
 const status = status => {
 	if (status === undefined) {
 		return _status
