@@ -124,20 +124,13 @@ $connection = connection();
 				<span class="ml-5 ml-sm-5 text-white">ControlWare</span><br>
 			</div>
 		</div>
-		<!-- Marcador do tamanho do página -->
-		<div id="sizes">
-			<div class="d-block d-sm-none">XS</div>
-			<div class="d-none d-sm-block d-md-none">SM</div>
-			<div class="d-none d-md-block d-lg-none">MD</div>
-			<div class="d-none d-lg-block d-xl-none">LG</div>
-			<div class="d-none d-xl-block">XL</div>
-		</div>
+		
 	</div>
 	<!-- Modal mensagem deletar livro -->
 	<div id="mensagemDeletar" class="modal" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<div class="modal-header bg-dark">
+				<div class="modal-header bg-warning">
 					<h5 class="modal-title text-danger">
 						Atenção
 						<i class="fas fa-exclamation-triangle"></i>
@@ -146,9 +139,9 @@ $connection = connection();
 				<div class="modal-body">
 					<p class="text-black">Tem certeza que deseja <b>DELETAR</b> este livro?</p>
 				</div>
-				<div class="modal-footer bg-dark">
-					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="fecharModalDeletar()">Não</button>
-					<button type="button" class="btn btn-danger" onclick="deletarLivro(), fecharModalDeletar()">Deletar Livro</button>
+				<div class="modal-footer bg-warning">
+					<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="fecharModalDeletar()">Não</button>
+					<button type="button" class="btn btn-success" onclick="deletarLivro(), fecharModalDeletar()">Deletar Livro</button>
 				</div>
 			</div>
 		</div>

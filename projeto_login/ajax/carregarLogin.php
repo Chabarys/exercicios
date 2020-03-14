@@ -17,6 +17,5 @@ if(count($arr) > 0) {
 	$_SESSION['email'] = $email; 
 	json_success();
 }else{
-	
 	json_error("Errado!");
 }
