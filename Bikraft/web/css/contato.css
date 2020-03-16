@@ -54,7 +54,7 @@
     padding: 7px 40px;
 }
 
-.contato_dados span:nth-of-type(even){
+.contato_dados span:nth-of-type(even) {
     margin-bottom: 30px;
 }
 
@@ -103,6 +103,6 @@
     border-color: #000;
 }
 
-.contato_mapa{
+.contato_mapa {
     margin-bottom: 60px;
 }
